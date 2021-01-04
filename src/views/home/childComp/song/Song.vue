@@ -1,5 +1,9 @@
 <template>
-  <div>This is Song</div>
+  <div class="song">
+    <song-filter></song-filter>
+    <song-list></song-list>
+
+  </div>
 </template>
 
 <script>
@@ -8,6 +12,9 @@
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+  .song{
+    margin-top: 25px;
+  }
 
 </style>

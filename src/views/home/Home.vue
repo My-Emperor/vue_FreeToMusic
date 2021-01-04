@@ -12,7 +12,7 @@
         <!--尾部歌曲栏-->
         <free-footer></free-footer>
       </el-footer>
-      <player></player>
+      <player @getMusicUrl="getMusicUrlRef" :playMusicInfo="playMusicInfo"></player>
     </el-container>
   </div>
 </template>
@@ -22,13 +22,28 @@
   import FreeFooter from 'components/common/footer/Footer'
   import Player from "components/common/player/Player";
 
-  
+  import {getMusicUrl} from "network/home"
   export default {
     name: "Home",
+    data(){
+      return {
+        playMusicInfo:null,
+      }
+    },
     components: {
       FreeHeader,
       FreeFooter,
       Player
+    },
+    methods:{
+      //获取歌曲url
+      getMusicUrlRef(id) {
+        getMusicUrl(id).then(res => {
+          // console.log(res);
+          this.playMusicInfo = res.data[0]
+          // this.$refs.audioRef.load();
+        })
+      },
     }
   }
 </script>

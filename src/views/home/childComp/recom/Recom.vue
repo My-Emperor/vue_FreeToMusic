@@ -4,7 +4,8 @@
       <banner :bannerInfo="banner" class="banner"></banner>
       <div class="recom_body">
         <recom-song :songList="recomSongInfo.songList"></recom-song>
-        <recom-music   @getMusic="getMusic" :musicList="recomMusicDetails"></recom-music>
+        <recom-music  @getMusic="getMusic" :musicList="recomMusicDetails"></recom-music>
+        <recom-singer :singerList="recomSingerInfo.singerList"></recom-singer>
       </div>
     </div>
   </div>
@@ -15,12 +16,14 @@
   import Banner from "components/content/banner/Banner"
   import RecomSong from "components/content/recom-song/RecomSong";
   import RecomMusic from "components/content/recom-music/RecomMusic";
+  import RecomSinger from "components/content/recom-singer/RecomSinger";
 
 
   import {getRecomNewMusicList} from "network/home"
   import {getBanner} from "network/home";
   import {getRecomSongList} from "network/home"
   import {getMusicList} from "network/home"
+  import {getRecomSinger} from "network/home";
   
   
   export default {
@@ -29,6 +32,7 @@
       Banner,
       RecomSong,
       RecomMusic,
+      RecomSinger
     },
     data() {
       return {
@@ -45,6 +49,13 @@
         //推荐歌曲详情
         recomMusicDetails:[],
         musicDetails:[],
+        //推荐歌手
+        recomSingerInfo:{
+          offset:0,
+          limit:28,
+          singerList:[]
+        },
+
       }
     },
     methods: {
@@ -86,9 +97,16 @@
       getMusicListRef(id,list){
         getMusicList(id).then(res => {
           if (res.code !== 200) this.$message.error("推荐歌曲数据获取失败");
-          console.log(res)
+          // console.log(res)
           list.push(res.songs[0]);
         });
+      },
+
+      //获取推荐歌手信息
+      getRecomSingerRef(offset,limit){
+        getRecomSinger(offset,limit).then(res => {
+          this.recomSingerInfo.singerList = res.artists;
+        })
       }
     },
     created() {
@@ -98,6 +116,8 @@
       this.getRecomSongListRef(this.recomSongInfo.limit);
       //初始化推荐歌曲数据
       this.getRecomNewMusicListRef(this.recomMusicDetails);
+      //初始化推荐歌手数据
+      this. getRecomSingerRef(this.recomSingerInfo.offset,this.recomSingerInfo.limit)
     }
   }
 </script>

@@ -86,7 +86,7 @@
       
       .albomName {
         font-size: 14px;
-        flex: 1;
+        flex: 1.5;
       }
       
       .singerName {

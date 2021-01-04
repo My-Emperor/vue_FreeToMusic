@@ -48,6 +48,11 @@ export function getMusicList(ids) {
   })
 }
 
+/**
+ * 获取歌曲url地址
+ * @param id 歌曲id
+ * @returns {*}
+ */
 export function getMusicUrl(id) {
   return request({
     url:"/song/url",
@@ -56,6 +61,27 @@ export function getMusicUrl(id) {
     }
   })
 }
+
+/**
+ * 获取推荐歌手信息
+ * @param offset
+ * @param limit
+ * @returns {AxiosPromise}
+ */
+export function getRecomSinger(offset,limit) {
+  return request({
+    url:`/top/artists?offset=${offset}&limit=${limit}`,
+  })
+}
+
+
+export function getTopList() {
+  return request({
+    url:"/toplist",
+  })
+}
+
+
 
 
 
