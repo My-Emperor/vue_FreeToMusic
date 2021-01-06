@@ -57,6 +57,7 @@
         //更改分类名
         this.currentTag = name;
         //选择标签后发送请求获取对应标签歌单
+        //this.$emit
         this.$emit('getSongSheet',name);
       },
       //是否显示标签框
