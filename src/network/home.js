@@ -124,6 +124,28 @@ export function getPlayList(order,cat,limit,offset) {
   })
 }
 
+/**
+ * 获取歌手列表
+ * @param type 类别
+ * @param area 语种
+ * @param initial 名称字符
+ * @param limit 获取数量
+ * @param offset 获取偏移量
+ * @returns {AxiosPromise}
+ */
+export function getSingerList(type,area,initial,limit,offset) {
+  return request({
+    url:"/artist/list",
+    params:{
+      type,
+      area,
+      initial,
+      limit,
+      offset
+    }
+  })
+}
+
 
 
 

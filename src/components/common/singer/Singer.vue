@@ -33,7 +33,8 @@ export default {
   methods:{
     getSingerDetails(singerId){
       console.log(singerId)
-    }
+    },
+
   }
 }
 </script>

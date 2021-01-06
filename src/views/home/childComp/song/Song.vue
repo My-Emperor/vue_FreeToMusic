@@ -20,7 +20,7 @@
   
   import {getCatList} from "network/home";
   import {getHotList} from "network/home";
-  import {getPlayList} from "../../../../network/home";
+  import {getPlayList} from "network/home";
   
   export default {
     name: "Song",
@@ -32,12 +32,12 @@
         songSheetInfo: {
           order: "hot",
           cat: "全部",
-          limit: 49,
+          limit: 35,
           offset: 0
         },
         queryInfo: {
           //每页展示条数
-          pageSize: 49,
+          pageSize: 35,
           //当前页码
           pageNum: 1,
           //总页码

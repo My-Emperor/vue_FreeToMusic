@@ -15,7 +15,7 @@
               </h2>
               <ul class="categoryList">
                   <li v-for="(item2,index2) in getFilterCatList(index1)" :key="index2">
-                  <el-button @click="selectTag(item2.name)" size="mini" round>{{item2.name}}</el-button>
+                  <el-button :class="item2.name == currentTag?'category':''" @click="selectTag(item2.name)" size="mini" round>{{item2.name}}</el-button>
                 </li>
               </ul>
             </div>
@@ -23,7 +23,8 @@
       </span>
       <ul>
         <li class="hot">热门标签:</li>
-        <li @click="selectTag(item.name)" class="tag" v-for="item in hotList" :key="item.id">
+        <li @click="selectTag(item.name)" :class="['tag',item.name == currentTag?'active':'']" v-for="item in hotList"
+            :key="item.id">
           {{item.name}}
         </li>
       </ul>
@@ -58,7 +59,7 @@
         this.currentTag = name;
         //选择标签后发送请求获取对应标签歌单
         //this.$emit
-        this.$emit('getSongSheet',name);
+        this.$emit('getSongSheet', name);
       },
       //是否显示标签框
       showSelectBox() {
@@ -77,13 +78,21 @@
         return list
       },
     },
-
+    
   }
 </script>
 
 <style lang="less" scoped>
+  .active {
+    color: red;
+  }
+  .category {
+     background-color: #ea482c;
+     color: white;
+   }
   .songFilter {
     margin: 20px 0px;
+    
     .selectFilter {
       position: relative;
       display: flex;
@@ -106,16 +115,19 @@
         cursor: default;
         color: black;
         overflow-y: scroll;
-        .item{
-          h2{
-            i{
+        
+        .item {
+          h2 {
+            i {
               font-size: 18px;
             }
           }
-          .categoryList{
-            li{
+          
+          .categoryList {
+            li {
               margin: 10px;
-              .el-button{
+              
+              .el-button {
                 &:hover {
                   background-color: #ea482c;
                   color: white;
@@ -125,8 +137,12 @@
           }
         }
       }
+      
       //自定义滚动条的伪对象选择器::-webkit-scrollbar。 --谷歌
-      .selectBox::-webkit-scrollbar { display: none;}
+      .selectBox::-webkit-scrollbar {
+        display: none;
+      }
+      
       .select {
         display: flex;
         justify-content: center;
@@ -165,6 +181,7 @@
         
         .tag {
           cursor: pointer;
+          
           &:hover {
             color: #a8a8a8;
           }

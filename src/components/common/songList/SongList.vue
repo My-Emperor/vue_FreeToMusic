@@ -1,7 +1,6 @@
 <template>
   <div class="songList">
     <song-sheet :imageUrlAttr="'song'" :sheetList="sheetList"></song-sheet>
-    
   </div>
 </template>
 
