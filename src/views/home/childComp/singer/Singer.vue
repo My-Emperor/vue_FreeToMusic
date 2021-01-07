@@ -1,14 +1,16 @@
 <template>
   <div class="singer content-width">
-    <singer-filter :languageFilter="languageFilter"
-                   :categoryFilter="categoryFilter"
-                   :nameFilter="nameFilter"
-                   :languageActive="languageActive"
-                   :categoryActive="categoryActive"
-                   :nameActive="nameActive"
-                   @changeType="changeType"></singer-filter>
+    <singer-filter
+      :languageFilter="languageFilter"
+      :categoryFilter="categoryFilter"
+      :nameFilter="nameFilter"
+      :languageActive="languageActive"
+      :categoryActive="categoryActive"
+      :nameActive="nameActive"
+      @changeType="changeType">
+    </singer-filter>
     
-      <singer-list :singerList="singerList"></singer-list>
+    <singer-list @changePage="changePage" :pageDown="pageDown" :pageUp="pageUp" :singerList="singerList"></singer-list>
   </div>
 </template>
 
@@ -83,14 +85,12 @@
           initial: -1
         },
         singerList: [],
-        queryInfo:{
+        queryInfo: {
           //每页展示条数
           pageSize: 35,
           //当前页码
           pageNum: 1,
-          //总页码
-          total: 0,
-        }
+        },
       }
     },
     components: {
@@ -132,20 +132,26 @@
         } else {
           return null;
         }
+        //重置查询偏移量
+        this.singerInfo.offset = 0;
         //更新查询条件后发送请求获取对应条件歌手列表
         this.getSingerListRef(this.singerInfo)
       },
-  
-      //更改页码时触发
-      handleCurrentChange(pagenum) {
-        this.queryInfo.pageNum = pagenum;
-        //更新对应页码的歌单偏移量
-        this.songSheetInfo.offset = (this.queryInfo.pageNum - 1) * this.songSheetInfo.limit
-        //重新加载歌单
-        this.getPlayListRef(this.songSheetInfo)
+      
+      //跳转页码事件
+      changePage(type) {
+        if (type == 'up') {
+          this.singerInfo.offset -= this.singerList.length;
+          console.log(this.singerInfo.offset)
+          this.getSingerListRef(this.singerInfo)
+        } else if (type == 'down') {
+          this.singerInfo.offset += this.singerList.length;
+          console.log(this.singerInfo.offset)
+          this.getSingerListRef(this.singerInfo)
+        } else {
+          return
+        }
       },
-  
-
       
       getSingerListRef(params) {
         getSingerList(params.type, params.area, params.initial, params.limit, params.offset).then(res => {
@@ -155,9 +161,17 @@
         })
       }
     },
+    computed: {
+      pageDown: function () {
+        return this.singerList.length < 35 ? true : false;
+      },
+      pageUp: function () {
+        return this.singerInfo.offset == 0 ? true : false;
+      },
+    },
     mounted() {
       this.nameFilter = this.getNameFilter()
-   
+      
     },
     created() {
       //初始化默认歌手列表
@@ -166,8 +180,9 @@
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
   .singer {
     margin-top: 25px;
+    
   }
 </style>

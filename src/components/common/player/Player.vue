@@ -106,9 +106,9 @@ export default {
       // if (!this.lastTime || nowTime - this.lastTime > gapTime) {
       //   if (this.$refs.audioRef) {
           //获取总时间长
-          this.playerAllTime = this.utils.formatSecondTime(this.$refs.audioRef.duration);
+          this.playerAllTime = this.$utils.formatSecondTime(this.$refs.audioRef.duration);
           //获取当前播放时间戳
-          this.playerNowTime = this.utils.formatSecondTime(this.$refs.audioRef.currentTime);
+          this.playerNowTime = this.$utils.formatSecondTime(this.$refs.audioRef.currentTime);
           this.transFromWidth = (this.$refs.audioRef.currentTime / this.$refs.audioRef.duration) * 100;
         // }
         // this.lastTime = nowTime
@@ -143,14 +143,14 @@ export default {
       this.transFromWidth = val;
       if (this.transFromWidth !== val) return;
       this.$refs.audioRef.currentTime = (this.transFromWidth / 100) * this.$refs.audioRef.duration;
-      this.playerNowTime = this.utils.formatSecondTime(this.$refs.audioRef.currentTime);
+      this.playerNowTime = this.$utils.formatSecondTime(this.$refs.audioRef.currentTime);
     },
 
     //拖拽条格式化进度信息格式化
     formatTooltip(val) {
       if (!val || !this.musicDetails || !this.$refs.audioRef) return;
       const time = (val / 100) * this.$refs.audioRef.duration;
-      return this.utils.formatSecondTime(time);
+      return this.$utils.formatSecondTime(time);
     },
     //音量拖拽条
     moveTransFormVolume(val) {

@@ -16,7 +16,7 @@ import "./assets/fonts/iconfont.css";
 import utils from "./utils/utils";
 
 Vue.config.productionTip = false;
-Vue.prototype.utils = utils;
+Vue.prototype.$utils = utils;
 
 
 
