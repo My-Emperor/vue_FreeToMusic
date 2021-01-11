@@ -25,7 +25,7 @@ import {
   TableColumn,
   Slider,
   Pagination,
-  InfiniteScroll
+  Tag,
 } from "element-ui";
 
 Vue.use(Button)
@@ -52,7 +52,8 @@ Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Slider)
 Vue.use(Pagination)
-Vue.use(InfiniteScroll)
+Vue.use(Tag)
+
 
 
 //消息组件需要进行全局挂载

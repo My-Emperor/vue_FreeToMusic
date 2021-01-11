@@ -95,6 +95,7 @@
         
         .img{
           position: relative;
+          width: 100%;
           .smokeIcon{
             position: absolute;
             top: 50%;

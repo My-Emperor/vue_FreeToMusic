@@ -6,6 +6,69 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "727430",
+      "name": "喜欢",
+      "font_class": "dangedaochu03",
+      "unicode": "e65a",
+      "unicode_decimal": 58970
+    },
+    {
+      "icon_id": "1374101",
+      "name": "推荐",
+      "font_class": "tuijian",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "3519965",
+      "name": "收 藏",
+      "font_class": "shoucang1",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "8146771",
+      "name": "推荐",
+      "font_class": "tuijian1",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "9174529",
+      "name": "评 论",
+      "font_class": "pinglun1",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "11680987",
+      "name": "评 论",
+      "font_class": "pinglun2",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "12527468",
+      "name": "收 藏",
+      "font_class": "shoucang2",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "13609041",
+      "name": "评 论",
+      "font_class": "comment",
+      "unicode": "e6f1",
+      "unicode_decimal": 59121
+    },
+    {
+      "icon_id": "5102559",
+      "name": "播放",
+      "font_class": "bofang1",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
       "icon_id": "230174",
       "name": "主题",
       "font_class": "zhuti",

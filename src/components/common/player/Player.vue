@@ -212,9 +212,9 @@ export default {
       console.log(this.$store.state.isPlayer)
       return this.$store.state.isPlayer;
     },
-    toTransFromWidth() {
-      return `transform:translateX(${this.transFromWidth + 'px'})`
-    },
+    // toTransFromWidth() {
+    //   return `transform:translateX(${this.transFromWidth + 'px'})`
+    // },
   },
   watch: {
     //播放歌曲id

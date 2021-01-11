@@ -36,7 +36,7 @@ export function getRecomNewMusicList() {
 
 /**
  * 获取歌曲详情
- * @param id 歌曲id
+ * @param ids 歌曲ids 支持多个id 用,隔开
  * @returns {AxiosPromise}
  */
 export function getMusicList(ids) {
@@ -168,9 +168,66 @@ export function getMvList(area,type,order,limit,offset) {
   })
 }
 
+/**
+ * 获取歌单详情
+ * @param id
+ * @returns {AxiosPromise}
+ */
+export function getSongDetailsList(id) {
+  return request({
+    url:"/playlist/detail",
+    params:{
+      id
+    }
+  })
+}
 
+/**
+ * 获取歌单收藏者列表
+ * @param id 歌单id
+ * @param limit 获取数量 默认为 20
+ * @param offset 偏移量
+ * @returns {AxiosPromise}
+ */
+export function getSongSub(id,limit,offset) {
+  return request({
+    url:"/playlist/subscribers",
+    params:{
+      id,
+      limit,
+      offset
+    }
+  })
+}
 
+/**
+ * 获取相关推荐歌单
+ * @param id 歌单id
+ * @returns {AxiosPromise}
+ */
+export function getSongRecom(id) {
+  return request({
+    url:"/related/playlist",
+    params:{
+      id,
+    }
+  })
+}
 
-
-
-
+/**
+ * 获取歌单评论
+ * @param id 歌单id
+ * @param limit 获取数量 默认为 20默认为 20
+ * @param offset 偏移量
+ * @returns {AxiosPromise}
+ */
+export function getSongComm(id,limit,offset) {
+  return request({
+    url:"/comment/playlist",
+    params:{
+      id,
+      limit,
+      offset
+    }
+  })
+}

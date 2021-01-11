@@ -61,13 +61,7 @@
     methods: {
       //获取播放歌曲详情
       getMusic(musicId){
-        getMusicList(musicId).then(res => {
-          if (res.code !== 200) this.$message.error("推荐歌曲数据获取失败");
-          console.log(res)
-          this.$store.commit("setPlayerMusicId",res.songs[0].id);
-          this.$store.commit("setMusicDetailsList",res.songs[0])
-          console.log(this.$store.state.musicDetailsList)
-        });
+        this.$emit("getMusic",musicId);
       },
       //获取banner
       getBannerRef() {

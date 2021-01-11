@@ -6,7 +6,7 @@
         <free-header></free-header>
       </el-header>
       <el-main >
-        <router-view/>
+        <router-view @getMusic="getMusic"/>
       </el-main>
       <el-footer>
         <!--尾部歌曲栏-->
@@ -23,6 +23,7 @@
   import Player from "components/common/player/Player";
 
   import {getMusicUrl} from "network/home"
+  import {getMusicList} from "network/home"
   export default {
     name: "Home",
     data(){
@@ -39,10 +40,18 @@
       //获取歌曲url
       getMusicUrlRef(id) {
         getMusicUrl(id).then(res => {
-          // console.log(res);
           this.playMusicInfo = res.data[0]
           // this.$refs.audioRef.load();
         })
+      },
+      getMusic(musicId){
+        getMusicList(musicId).then(res => {
+          if (res.code !== 200) this.$message.error("歌曲数据获取失败");
+          console.log(res)
+          this.$store.commit("setPlayerMusicId",res.songs[0].id);
+          this.$store.commit("setMusicDetailsList",res.songs[0])
+          console.log(this.$store.state.musicDetailsList)
+        });
       },
     }
   }

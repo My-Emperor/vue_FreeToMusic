@@ -39,7 +39,6 @@
     },
     methods:{
       getMusic(musicId){
-        
         this.$emit('getMusic',musicId);
       }
     }

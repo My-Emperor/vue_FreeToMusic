@@ -2,7 +2,7 @@
   <div class="cloudMusic">
     <h2 class="title"><i></i> 云音乐特色榜</h2>
     <ul class="list">
-      <li  class="item" v-for="item in cloudList" :key="item.id">
+      <li @click="toDetail(item.id)" class="item" v-for="item in cloudList" :key="item.id">
         <div class="img" @click="getSheetDetails(item.id)">
           <el-image :src="item.coverImgUrl"></el-image>
         </div>
@@ -26,8 +26,14 @@ export default {
     }
   },
   methods:{
-    getSheetDetails(sheetId){
-      console.log(sheetId)
+
+    toDetail(id){
+      this.$router.push({
+        path: '/songDetails',
+        query:{
+          id:id
+        }
+      })
     }
   }
 }

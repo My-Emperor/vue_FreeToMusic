@@ -2,8 +2,8 @@
   <div class="mediaMusic">
     <h2 class="title"><i></i> 全球媒体榜</h2>
     <ul class="list">
-      <li  class="item" v-for="item in mediaList" :key="item.id">
-        <div class="img" @click="getSheetDetails(item.id)">
+      <li @click="toDetail(item.id)" class="item" v-for="item in mediaList" :key="item.id">
+        <div class="img" >
           <el-image :src="item.coverImgUrl"></el-image>
         </div>
         <div class="info">
@@ -26,8 +26,13 @@ export default {
     }
   },
   methods:{
-    getSheetDetails(sheetId){
-      console.log(sheetId)
+    toDetail(id){
+      this.$router.push({
+        path: '/songDetails',
+        query:{
+          id:id
+        }
+      })
     }
   }
 }

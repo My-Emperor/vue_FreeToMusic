@@ -36,13 +36,12 @@
     },
     methods: {
       toDetail(item) {
-        console.log(item)
-        let query = {
-          id: item.id
-        }
+
         this.$router.push({
-          name: 'playlistDetail',
-          query
+          path: '/songDetails',
+          query:{
+            id:item.id
+          }
         })
       }
     },
@@ -62,7 +61,8 @@
       margin-left: 10px;
       padding: 0 12px 30px;
       flex: 0 0 13.5%;
-      
+      cursor: pointer;
+  
       .item-box {
         //规定文本中不进行换行
         white-space: nowrap;
@@ -74,7 +74,6 @@
         &:hover {
           background: url("../../../assets/img/coverall.png") -0px 650px;
           transition: all .2s;
-          
         }
         
         .el-image {
