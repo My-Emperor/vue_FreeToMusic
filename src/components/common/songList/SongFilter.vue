@@ -3,6 +3,7 @@
     <div class="selectFilter">
       <span @click="showSelectBox" class="select">{{currentTag}}
         <i class="icon iconfont icon-other_xialaliebiao"></i>
+        <transition name="el-fade-in-linear">
         <div v-if="boxFlag" class="selectBox">
             <div v-for="(item1,index1) in catList.categories" :key="index1" class="item">
               <h2>
@@ -15,11 +16,13 @@
               </h2>
               <ul class="categoryList">
                   <li v-for="(item2,index2) in getFilterCatList(index1)" :key="index2">
-                  <el-button :class="item2.name == currentTag?'category':''" @click="selectTag(item2.name)" size="mini" round>{{item2.name}}</el-button>
+                  <el-button :class="item2.name == currentTag?'category':''" @click="selectTag(item2.name)" size="mini"
+                             round>{{item2.name}}</el-button>
                 </li>
               </ul>
             </div>
         </div>
+      </transition>
       </span>
       <ul>
         <li class="hot">热门标签:</li>
@@ -86,10 +89,12 @@
   .active {
     color: red;
   }
+  
   .category {
-     background-color: #ea482c;
-     color: white;
-   }
+    background-color: #ea482c;
+    color: white;
+  }
+  
   .songFilter {
     margin: 20px 0px;
     

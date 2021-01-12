@@ -141,11 +141,11 @@
       //跳转页码事件
       changePage(type) {
         if (type == 'up') {
-          this.singerInfo.offset -= this.singerList.length;
+          this.singerInfo.offset -= 35;
           console.log(this.singerInfo.offset)
           this.getSingerListRef(this.singerInfo)
         } else if (type == 'down') {
-          this.singerInfo.offset += this.singerList.length;
+          this.singerInfo.offset += 35;
           console.log(this.singerInfo.offset)
           this.getSingerListRef(this.singerInfo)
         } else {

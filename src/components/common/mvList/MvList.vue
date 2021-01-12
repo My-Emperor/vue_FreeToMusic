@@ -4,7 +4,7 @@
       <li @click="toDetils(item.id)" class="item" v-for="item in mvList" :key="item.id">
         <div class="img">
           <el-image
-            :src="item.cover"
+            :src="mvAttr == 'default'?item.cover:item.imgurl"
             fit="cover"
           ></el-image>
           <div class="smoke">
@@ -21,7 +21,6 @@
           <h2>
             {{item.name}}
           </h2>
-  
         </div>
 
       </li>
@@ -54,6 +53,10 @@
           return [];
         }
       },
+      mvAttr:{
+        type:String,
+        default:'default'
+      }
     },
     methods:{
       changePage(type){
@@ -89,7 +92,7 @@
     margin: 20px 0px;
     .list{
       display: flex;
-      justify-content: space-between;
+      justify-content: left;
       flex-wrap: wrap;
       align-items: center;
       .item{

@@ -12,6 +12,7 @@ const Personal = () => import("@/views/home/childComp/personal/Personal");
 const Mv = () => import("@/views/home/childComp/mv/Mv");
 const SongDetails = () => import("@/views/home/childComp/songDetails/SongDetails");
 const MvDetails = () => import("@/views/home/childComp/mvDetails/MvDetails")
+const SingerDetails =() => import("@/views/home/childComp/singerDetails/SingerDetails")
 const routes = [
   {
     path: "",
@@ -65,6 +66,11 @@ const routes = [
         //mv详情
         path: "/mvDetails",
         component: MvDetails
+      },
+      {
+        //歌手v详情
+        path: "/singerDetails",
+        component: SingerDetails
       },
     ]
   }

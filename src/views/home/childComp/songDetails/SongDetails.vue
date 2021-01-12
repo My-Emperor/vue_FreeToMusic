@@ -5,7 +5,7 @@
     </div>
     <div class="right">
       <song-like :likeList="likeList"></song-like>
-      <related :recomList="recomList"></related>
+      <related @changeSongDetail="changeSongDetail" :recomList="recomList"></related>
       <comment :commList="commList"></comment>
     </div>
   </div>
@@ -65,6 +65,22 @@
       }
     },
     methods: {
+      //更换推荐歌单
+      changeSongDetail(id){
+        //发送网络请求获取歌单详情
+        this.getSongDetailsListRef(id);
+        this.commQueryInfo.id = id;
+        //初始化歌单评论
+        this.getSongCommRef(this.commQueryInfo);
+  
+        //初始化推荐歌单
+        this.getSongRecomRef(id);
+  
+        this.likeQueryInfo.id = id;
+        //初始化歌单收藏着列表
+        this.getSongSubRef(this.likeQueryInfo);
+      },
+      
       //获取歌单详情
       getSongDetailsListRef(id) {
         getSongDetailsList(id).then(res => {

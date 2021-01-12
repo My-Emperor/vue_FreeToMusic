@@ -1,7 +1,7 @@
 <template>
   <div class="singer">
     <ul class="singerList">
-      <li @click="getSingerDetails(item.id)" class="singerItem" v-for="item in singerList" :key="item.id">
+      <li @click="toSingerDetails(item.id)" class="singerItem" v-for="item in singerList" :key="item.id">
         <!--          <img :src="item.img1v1Url" alt="">-->
         <div class="img">
           <el-image
@@ -31,8 +31,13 @@ export default {
     }
   },
   methods:{
-    getSingerDetails(singerId){
-      console.log(singerId)
+    toSingerDetails(id){
+      this.$router.push({
+        path:'singerDetails',
+        query:{
+          id:id
+        }
+      })
     },
 
   }
@@ -42,7 +47,7 @@ export default {
 <style lang="less" scoped>
 .singerList {
   display: flex;
-  justify-content: space-around;
+  justify-content: left;
   flex-wrap: wrap;
 
   .singerItem {

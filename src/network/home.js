@@ -293,3 +293,85 @@ export function getMvRecom(mvid) {
     }
   })
 }
+
+/**
+ * 获取歌手的信息与热门歌曲  (所有歌曲需要登录后获取)
+ * @param id 歌手id
+ * @returns {AxiosPromise}
+ */
+export function getSingerMusic(id) {
+  return request({
+    url: "/artists",
+    params: {
+      id,
+    }
+  })
+}
+
+/**
+ * 调用此接口 , 传入歌手 id, 可获得歌手 mv 信息 , 具体 mv 播放地址可调 用/mv传入此接口获得的 mvid 来拿到
+ * @param id 歌手id
+ * @returns {AxiosPromise}
+ */
+export function getSingerMv(id) {
+  return request({
+    url: "/artist/mv",
+    params: {
+      id,
+    }
+  })
+}
+
+/**
+ * 调用此接口 , 传入歌手 id, 可获得歌手专辑内容
+ * @param id
+ * @param limit 获取数量
+ * @param offset 偏移量
+ * @returns {AxiosPromise}
+ */
+export function getSingerSong(id,limit,offset) {
+  return request({
+    url: "/artist/album",
+    params: {
+      id,
+      limit,
+      offset
+    }
+  })
+}
+
+/**
+ * 获取歌手描述
+ * @param id 歌手id
+ * @returns {AxiosPromise}
+ */
+export function getSingerInfo(id) {
+  return request({
+    url: "/artist/desc",
+    params: {
+      id,
+    }
+  })
+}
+
+
+// 获取歌手描述
+// 说明 : 调用此接口 , 传入歌手 id, 可获得歌手描述
+//
+// 必选参数 : id: 歌手 id
+//
+// 接口地址 : /artist/desc
+//
+// 调用例子 : /artist/desc?id=6452 ( 周杰伦 )
+//
+
+// 获取专辑内容
+// 说明 : 调用此接口 , 传入专辑 id, 可获得专辑内容
+//
+// 必选参数 : id: 专辑 id
+//
+// 接口地址 : /album
+//
+// 调用例子 : /album?id=32311
+//
+// 返回数据如下图 : 获取专辑内容

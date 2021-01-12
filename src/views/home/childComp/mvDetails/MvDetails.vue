@@ -17,7 +17,7 @@
     </div>
     <div class="right">
       <el-card>
-        <related :mvRecomList="mvRecomList"></related>
+        <related @changeMvDetail="changeMvDetail" :mvRecomList="mvRecomList"></related>
       </el-card>
     </div>
   </div>
@@ -71,6 +71,16 @@
         this.commQueryInfo.offset = (this.pageInfo.pageNum - 1) * this.commQueryInfo.limit
         //重新获取评论 (评论中自动删除了hotComment 所以不需要判断处理)
         this.getMvCommentRef(this.commQueryInfo);
+      },
+      
+      //更换mv
+      changeMvDetail(id){
+        this.mvId = id;
+        this.commQueryInfo.id = id;
+        this.getMvUrlRef(this.mvId);
+        this.getMvDetailsRef(this.mvId);
+        this.getMvCommentRef(this.commQueryInfo)
+        this.getMvRecomRef(this.mvId)
       },
       
       //获取mv的url地址

@@ -177,10 +177,10 @@ export default {
   },
   //随机数组排序
   shuffle(arr) {
-  let i = arr.length;
-  while (i) {
-    let j = Math.floor(Math.random() * i--);
-    [arr[j], arr[i]] = [arr[i], arr[j]];
+    let i = arr.length;
+    while (i) {
+      let j = Math.floor(Math.random() * i--);
+      [arr[j], arr[i]] = [arr[i], arr[j]];
+    }
   }
-}
 }

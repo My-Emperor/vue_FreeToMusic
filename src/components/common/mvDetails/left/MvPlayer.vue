@@ -92,6 +92,7 @@
       .desc{
         padding: 0 10px;
         font-size: 14px;
+        line-height: 1.5;
       }
       .tag{
         margin: 10px 5px;

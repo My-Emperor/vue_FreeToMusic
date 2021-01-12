@@ -35,15 +35,7 @@
     },
     methods:{
       toDetail(id){
-        this.$router.push({
-          path: '/mvDetails',
-          query:{
-            id:id
-          }
-        })
-        //push相同路径不会发生刷新
-        //调用go(0)刷新页面获取新数据
-        this.$router.go(0);
+        this.$emit("changeMvDetail",id);
       }
     }
   }

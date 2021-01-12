@@ -5,8 +5,10 @@
         <!--顶部-->
         <free-header></free-header>
       </el-header>
-      <el-main >
-        <router-view @getMusic="getMusic"/>
+      <el-main>
+        <keep-alive :include="['/rank','/recom','/song','/singer','/mv']">
+          <router-view @getMusic="getMusic"/>
+        </keep-alive>
       </el-main>
       <el-footer>
         <!--尾部歌曲栏-->
@@ -21,14 +23,15 @@
   import FreeHeader from 'components/common/header/Header'
   import FreeFooter from 'components/common/footer/Footer'
   import Player from "components/common/player/Player";
-
+  
   import {getMusicUrl} from "network/home"
   import {getMusicList} from "network/home"
+  
   export default {
     name: "Home",
-    data(){
+    data() {
       return {
-        playMusicInfo:null,
+        playMusicInfo: null,
       }
     },
     components: {
@@ -36,7 +39,7 @@
       FreeFooter,
       Player
     },
-    methods:{
+    methods: {
       //获取歌曲url
       getMusicUrlRef(id) {
         getMusicUrl(id).then(res => {
@@ -44,12 +47,12 @@
           // this.$refs.audioRef.load();
         })
       },
-      getMusic(musicId){
+      getMusic(musicId) {
         getMusicList(musicId).then(res => {
           if (res.code !== 200) this.$message.error("歌曲数据获取失败");
           console.log(res)
-          this.$store.commit("setPlayerMusicId",res.songs[0].id);
-          this.$store.commit("setMusicDetailsList",res.songs[0])
+          this.$store.commit("setPlayerMusicId", res.songs[0].id);
+          this.$store.commit("setMusicDetailsList", res.songs[0])
           console.log(this.$store.state.musicDetailsList)
         });
       },
@@ -62,7 +65,7 @@
     padding: 0;
     text-align: center;
   }
-
+  
   div .el-footer {
     padding: 0;
   }

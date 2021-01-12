@@ -53,7 +53,7 @@ export default {
 
 .list{
   display: flex;
-  justify-content: space-around;
+  justify-content: left;
   flex-wrap: wrap;
   .item{
     padding: 20px;

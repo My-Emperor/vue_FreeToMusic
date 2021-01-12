@@ -25,7 +25,7 @@ import {
   TableColumn,
   Slider,
   Pagination,
-  Tag,
+  Tag, Tabs, TabPane,
 } from "element-ui";
 
 Vue.use(Button)
@@ -53,6 +53,10 @@ Vue.use(TableColumn)
 Vue.use(Slider)
 Vue.use(Pagination)
 Vue.use(Tag)
+Vue.use(Tabs)
+Vue.use(TabPane)
+
+
 
 
 

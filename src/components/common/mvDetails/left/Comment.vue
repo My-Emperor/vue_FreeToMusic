@@ -66,9 +66,6 @@
         </ul>
       </div>
     </div>
-    <div class="page">
-
-    </div>
   </div>
 </template>
 
