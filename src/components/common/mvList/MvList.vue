@@ -1,7 +1,7 @@
 <template>
   <div class="mvList">
     <ul class="list" >
-      <li class="item" v-for="item in mvList" :key="item.id">
+      <li @click="toDetils(item.id)" class="item" v-for="item in mvList" :key="item.id">
         <div class="img">
           <el-image
             :src="item.cover"
@@ -57,9 +57,19 @@
     },
     methods:{
       changePage(type){
-        //发送跳转页面事件
+        //发送页码跳转页面事件
         this.$emit('changePage',type);
         console.log(this.utils)
+      },
+  
+      //跳转至详情页
+      toDetils(id){
+        this.$router.push({
+          path:'/mvDetails',
+          query:{
+            id:id,
+          }
+        })
       },
 
     },
@@ -96,6 +106,9 @@
         .img{
           position: relative;
           width: 100%;
+          .el-image{
+            width: 100%;
+          }
           .smokeIcon{
             position: absolute;
             top: 50%;

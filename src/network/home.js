@@ -6,7 +6,7 @@ import {request} from "./request"
  */
 export function getBanner() {
   return request({
-    url:"/banner",
+    url: "/banner",
   })
 }
 
@@ -17,7 +17,7 @@ export function getBanner() {
  */
 export function getRecomSongList(limit) {
   return request({
-    url:"/personalized",
+    url: "/personalized",
     params: {
       limit
     }
@@ -30,7 +30,7 @@ export function getRecomSongList(limit) {
  */
 export function getRecomNewMusicList() {
   return request({
-    url:"/personalized/newsong",
+    url: "/personalized/newsong",
   })
 }
 
@@ -41,8 +41,8 @@ export function getRecomNewMusicList() {
  */
 export function getMusicList(ids) {
   return request({
-    url:"/song/detail",
-    params:{
+    url: "/song/detail",
+    params: {
       ids
     }
   })
@@ -55,8 +55,8 @@ export function getMusicList(ids) {
  */
 export function getMusicUrl(id) {
   return request({
-    url:"/song/url",
-    params:{
+    url: "/song/url",
+    params: {
       id
     }
   })
@@ -68,9 +68,9 @@ export function getMusicUrl(id) {
  * @param limit
  * @returns {AxiosPromise}
  */
-export function getRecomSinger(offset,limit) {
+export function getRecomSinger(offset, limit) {
   return request({
-    url:`/top/artists?offset=${offset}&limit=${limit}`,
+    url: `/top/artists?offset=${offset}&limit=${limit}`,
   })
 }
 
@@ -80,7 +80,7 @@ export function getRecomSinger(offset,limit) {
  */
 export function getTopList() {
   return request({
-    url:"/toplist",
+    url: "/toplist",
   })
 }
 
@@ -90,7 +90,7 @@ export function getTopList() {
  */
 export function getCatList() {
   return request({
-    url:"/playlist/catlist",
+    url: "/playlist/catlist",
   })
 }
 
@@ -100,7 +100,7 @@ export function getCatList() {
  */
 export function getHotList() {
   return request({
-    url:"/playlist/hot",
+    url: "/playlist/hot",
   })
 }
 
@@ -112,10 +112,10 @@ export function getHotList() {
  * @param offset 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*50, 其中 50 为 limit 的值
  * @returns {AxiosPromise}
  */
-export function getPlayList(order,cat,limit,offset) {
+export function getPlayList(order, cat, limit, offset) {
   return request({
-    url:"/top/playlist",
-    params:{
+    url: "/top/playlist",
+    params: {
       order,
       cat,
       limit,
@@ -133,10 +133,10 @@ export function getPlayList(order,cat,limit,offset) {
  * @param offset 获取偏移量
  * @returns {AxiosPromise}
  */
-export function getSingerList(type,area,initial,limit,offset) {
+export function getSingerList(type, area, initial, limit, offset) {
   return request({
-    url:"/artist/list",
-    params:{
+    url: "/artist/list",
+    params: {
       type,
       area,
       initial,
@@ -155,10 +155,10 @@ export function getSingerList(type,area,initial,limit,offset) {
  * @param offset: 偏移数量 , 用于分页 , 如 :( 页数 -1)*50, 其中 50 为 limit 的值 , 默认 为 0
  * @returns {AxiosPromise}
  */
-export function getMvList(area,type,order,limit,offset) {
+export function getMvList(area, type, order, limit, offset) {
   return request({
-    url:"/mv/all",
-    params:{
+    url: "/mv/all",
+    params: {
       area,
       type,
       order,
@@ -175,8 +175,8 @@ export function getMvList(area,type,order,limit,offset) {
  */
 export function getSongDetailsList(id) {
   return request({
-    url:"/playlist/detail",
-    params:{
+    url: "/playlist/detail",
+    params: {
       id
     }
   })
@@ -189,10 +189,10 @@ export function getSongDetailsList(id) {
  * @param offset 偏移量
  * @returns {AxiosPromise}
  */
-export function getSongSub(id,limit,offset) {
+export function getSongSub(id, limit, offset) {
   return request({
-    url:"/playlist/subscribers",
-    params:{
+    url: "/playlist/subscribers",
+    params: {
       id,
       limit,
       offset
@@ -207,8 +207,8 @@ export function getSongSub(id,limit,offset) {
  */
 export function getSongRecom(id) {
   return request({
-    url:"/related/playlist",
-    params:{
+    url: "/related/playlist",
+    params: {
       id,
     }
   })
@@ -221,13 +221,75 @@ export function getSongRecom(id) {
  * @param offset 偏移量
  * @returns {AxiosPromise}
  */
-export function getSongComm(id,limit,offset) {
+export function getSongComm(id, limit, offset) {
   return request({
-    url:"/comment/playlist",
-    params:{
+    url: "/comment/playlist",
+    params: {
       id,
       limit,
       offset
+    }
+  })
+}
+
+/**
+ * 传入 mv id,可获取 mv 播放地址
+ * @param id mv id
+ * @param r r: 分辨率,默认1080,可从 /mv/detail 接口获取分辨率列表
+ * @returns {AxiosPromise}
+ */
+export function getMvUrl(id, r) {
+  return request({
+    url: "/mv/url",
+    params: {
+      id,
+      r
+    }
+  })
+}
+
+/**
+ * 调用此接口 , 传入音乐 id 和 limit 参数 , 可获得该 mv 的所有评论 ( 不需要 登录 )
+ * @param id mv id
+ * @param limit 取出评论数量 , 默认为 20
+ * @param offset 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*20, 其中 20 为 limit 的值
+ * @returns {AxiosPromise}
+ */
+export function getMvComment(id, limit, offset) {
+  return request({
+    url: "/comment/mv",
+    params: {
+      id,
+      limit,
+      offset
+    }
+  })
+}
+
+/**
+ * 调用此接口 , 传入 mvid ( 在搜索音乐的时候传 type=1004 获得 ) , 可获取对应 MV 数据 , 数据包含 mv 名字 , 歌手 , 发布时间等数据
+ * @param id mv 的 id
+ * @returns {AxiosPromise}
+ */
+export function getMvDetails(mvid) {
+  return request({
+    url: "/mv/detail",
+    params: {
+      mvid,
+    }
+  })
+}
+
+/**
+ * 调用此接口 , 传入 mvid 可获取相似 mv
+ * @param id mv id
+ * @returns {AxiosPromise}
+ */
+export function getMvRecom(mvid) {
+  return request({
+    url: "/simi/mv",
+    params: {
+      mvid,
     }
   })
 }
