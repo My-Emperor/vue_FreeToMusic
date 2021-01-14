@@ -5,10 +5,19 @@ export default {
   },
   //歌曲详情
   setMusicDetailsList(state,music){
+    var flag = true;
     console.log(music)
     state.musicDetails = music
-    //将歌曲添加到歌单列表中
-    state.musicDetailsList.push(music);
+    state.musicDetailsList.forEach(item => {
+      if (item.id == music.id){
+        flag = false;
+      }
+    })
+    if (flag){
+      //将歌曲添加到歌单列表中
+      state.musicDetailsList.push(music);
+    }
+    
   },
   //播放歌曲id
   setPlayerMusicId(state,musicId){
@@ -19,6 +28,7 @@ export default {
   changePlayerMode(state,num){
     state.playerMode = num;
   },
+  
   setIsPlayer(state,flag){
     state.isPlayer = flag;
   }

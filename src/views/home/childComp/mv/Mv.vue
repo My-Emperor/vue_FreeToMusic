@@ -109,7 +109,6 @@
     methods: {
       //修改分类
       changeType(obj) {
-        console.log(obj)
         if (obj.type == "language") {
           this.languageActive = obj.label;
           this.mvInfo.area = obj.label;
@@ -123,6 +122,7 @@
           return null;
         }
         //重置查询偏移量
+        this.mvInfo.offset = 0;
         //更新查询条件后发送请求获取对应条件歌手列表]
         this.getMvListRef(this.mvInfo);
       },
@@ -130,10 +130,10 @@
       //跳转页码事件
       changePage(type) {
         if (type == 'up') {
-          this.mvInfo.offset -= this.mvList.length;
+          this.mvInfo.offset -= 16;
           this.getMvListRef(this.mvInfo)
         } else if (type == 'down') {
-          this.mvInfo.offset += this.mvList.length;
+          this.mvInfo.offset += 16;
           this.getMvListRef(this.mvInfo)
         } else {
           return
@@ -144,7 +144,6 @@
         getMvList(params.area, params.type, params.order, params.limit, params.offset).then(res => {
           if (res.code != 200) return this.$message.error("ERROR!");
           this.mvList = res.data;
-          console.log(this.mvList)
         })
       },
     },

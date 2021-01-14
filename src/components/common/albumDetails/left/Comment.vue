@@ -2,7 +2,7 @@
   <div class="comment">
     <div class="top">
       <span class="iconfont icon-pinglun4"></span>
-      <h2>Comment</h2>
+      <h2>Comment <span>共{{total}}条评论</span></h2>
     </div>
     <div class="hotComm" v-if="hotCommList.length">
       <div class="title">
@@ -89,6 +89,10 @@
         default() {
           return [];
         }
+      },
+      total:{
+        type:Number,
+        default:0,
       }
     },
     filters: {
@@ -111,9 +115,16 @@
       border-bottom: 1px solid #d9d9d9;
       
       h2 {
+        display: flex;
+        align-items: center;
         font-size: 18px;
         margin-left: 8px;
         font-weight: 500;
+        span{
+          margin-left: 10px;
+          font-size: 14px;
+          color: #c3c3c3;
+        }
       }
       
       span {

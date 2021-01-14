@@ -58,7 +58,8 @@
 <style lang="less" scoped>
   .mvPlayer {
     .video {
-      width: 100%;
+      width: 950px;
+      height: 550px;
     }
     
     .mvInfo {

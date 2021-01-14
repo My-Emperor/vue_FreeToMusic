@@ -7,26 +7,25 @@
         <span @click="changeTabs('song')" :class="flag == 'song'? 'active':''">专辑</span>
         <span @click="changeTabs('mv')" :class="flag == 'mv'? 'active':''">MV</span>
         <span @click="changeTabs('info')" :class="flag == 'info'? 'active':''">介绍</span>
-      
       </div>
       <div class="cont">
         <div class="music" :style="{'display': flag == 'music'?'block':'none' }">
           <music-list @getMusic="getMusic" :musicList="hotSongsList"></music-list>
         </div>
         <div class="song" :style="{'display': flag == 'song'?'block':'none' }">
-          <song-sheet :styleAttr="styleAttr" :sheetList="songsList"></song-sheet>
+          <song-sheet :songType="'singer'" :styleAttr="styleAttr" :sheetList="songsList"></song-sheet>
           <div class="page">
             <el-button type="info" @click="changePage('up')" plain :disabled="pageUp">上一页</el-button>
             <el-button type="info" @click="changePage('down')" plain :disabled="pageDown">下一页</el-button>
           </div>
         </div>
         <div class="mv" :style="{'display': flag == 'mv'?'block':'none' }">
-          <mv-list :mvList="mvList" :mvAttr="mvAttr"></mv-list>
+          <mv-list :mvType="'singer'" :mvList="mvList" :mvAttr="mvAttr"></mv-list>
         </div>
         <div v-if="singInfo" class="info" :style="{'display': flag == 'info'?'block':'none' }">
           <h2>歌手简介</h2>
           <p style="text-indent:20px">{{singInfo.briefDesc}}</p>
-          <ul >
+          <ul>
             <li v-for="(item,index) in singInfo.introduction" :key="index">
               <h2>{{item.ti}}</h2>
               <p>{{item.txt}}</p>
@@ -34,6 +33,7 @@
           </ul>
         </div>
       </div>
+    
     </el-card>
   </div>
 </template>
@@ -57,11 +57,11 @@
           return [];
         }
       },
-      pageUp:{
-        type:Boolean,
+      pageUp: {
+        type: Boolean,
       },
-      pageDown:{
-        type:Boolean,
+      pageDown: {
+        type: Boolean,
       },
       songsList: {
         type: Array,
@@ -69,15 +69,15 @@
           return [];
         }
       },
-      mvList:{
+      mvList: {
         type: Array,
         defualt() {
           return [];
         }
       },
-      singInfo:{
-        type:Object,
-        defualt(){
+      singInfo: {
+        type: Object,
+        defualt() {
           return null;
         }
       }
@@ -86,7 +86,7 @@
       return {
         flag: 'music',
         styleAttr: 'singer',
-        mvAttr:'singer'
+        mvAttr: 'singer'
       }
     },
     methods: {
@@ -131,6 +131,9 @@
           margin: 0 40px;
           padding: 4px 20px;
           font-size: 18px;
+          &:hover{
+            cursor: pointer;
+          }
         }
       }
       
@@ -153,21 +156,25 @@
             }
           }
         }
-        .info{
-          h2{
+        
+        .info {
+          h2 {
             font-size: 20px;
             margin-bottom: 5px;
           }
-          p{
+          
+          p {
             white-space: pre-wrap;
             padding: 0 5px;
             font-size: 14px;
             line-height: 1.5;
             color: #727272;
           }
-          ul{
+          
+          ul {
             margin-top: 5px;
-            li{
+            
+            li {
               margin-top: 15px;
             }
           }

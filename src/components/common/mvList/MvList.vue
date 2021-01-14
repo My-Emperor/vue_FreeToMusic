@@ -1,6 +1,6 @@
 <template>
   <div class="mvList">
-    <ul class="list" >
+    <ul class="list">
       <li @click="toDetils(item.id)" class="item" v-for="item in mvList" :key="item.id">
         <div class="img">
           <el-image
@@ -13,7 +13,7 @@
               <span class="playCount"><i>点击量:</i>{{item.playCount | tranNumber(that)}}</span>
               <span class="playTime">{{item.duration | formatTime(that)}}</span></div>
           </div>
-          <div  class="smokeIcon">
+          <div class="smokeIcon">
             <span class="iconfont icon-bofang"></span>
           </div>
         </div>
@@ -22,10 +22,10 @@
             {{item.name}}
           </h2>
         </div>
-
+      
       </li>
     </ul>
-    <div class="page">
+    <div v-if="mvType == 'default'? true:false" class="page">
       <el-button type="info" @click="changePage('up')" plain :disabled="pageUp">上一页</el-button>
       <el-button type="info" @click="changePage('down')" plain :disabled="pageDown">下一页</el-button>
     </div>
@@ -35,95 +35,107 @@
 <script>
   export default {
     name: "MvList",
-    data(){
+    data() {
       return {
-        that:this,
+        that: this,
       }
     },
-    props:{
-      pageUp:{
-        type:Boolean,
+    props: {
+      pageUp: {
+        type: Boolean,
       },
-      pageDown:{
-        type:Boolean,
+      pageDown: {
+        type: Boolean,
       },
-      mvList:{
-        type:Array,
-        default(){
+      mvList: {
+        type: Array,
+        default() {
           return [];
         }
       },
-      mvAttr:{
-        type:String,
-        default:'default'
+      mvAttr: {
+        type: String,
+        default: 'default'
+      },
+      mvType: {
+        type: String,
+        default: 'default'
       }
     },
-    methods:{
-      changePage(type){
+    methods: {
+      changePage(type) {
         //发送页码跳转页面事件
-        this.$emit('changePage',type);
+        this.$emit('changePage', type);
         console.log(this.utils)
       },
-  
+      
       //跳转至详情页
-      toDetils(id){
+      toDetils(id) {
         this.$router.push({
-          path:'/mvDetails',
-          query:{
-            id:id,
+          path: '/mvDetails',
+          query: {
+            id: id,
           }
         })
       },
-
+      
     },
-    filters:{
-      formatTime(time,that){
+    filters: {
+      formatTime(time, that) {
         return that.$utils.formatTime(time);
       },
-      tranNumber(num,that){
-        return that.$utils.tranNumber(num,0);
+      tranNumber(num, that) {
+        return that.$utils.tranNumber(num, 0);
       }
     }
   }
 </script>
 
 <style lang="less" scoped>
-  .mvList{
+  .mvList {
     margin: 20px 0px;
-    .list{
+    
+    .list {
       display: flex;
       justify-content: left;
       flex-wrap: wrap;
       align-items: center;
-      .item{
+      
+      .item {
         flex: 0 0 23%;
         margin: 10px;
         overflow: hidden;
-        &:hover{
+        
+        &:hover {
           cursor: pointer;
-          .smokeIcon{
+          
+          .smokeIcon {
             display: block !important;
           }
         }
         
-        .img{
+        .img {
           position: relative;
           width: 100%;
-          .el-image{
+          
+          .el-image {
             width: 100%;
           }
-          .smokeIcon{
+          
+          .smokeIcon {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-25px,-25px);
+            transform: translate(-25px, -25px);
             display: none;
+            
             span {
               font-size: 50px;
               color: white;
             }
           }
-          .smoke{
+          
+          .smoke {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -131,27 +143,33 @@
             bottom: 5px;
             width: 100%;
             padding-left: 5px;
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(0, 0, 0, 0.4);
             color: #e7e7e7;
-            .playCount{
+            
+            .playCount {
               font-size: 13px;
-              i{
+              
+              i {
                 margin-right: 1px;
                 font-style: normal;
                 font-size: 12px;
               }
             }
-            .playTime{
+            
+            .playTime {
               margin: 0 5px 0 10px;
             }
-            span{
+            
+            span {
               font-size: 14px;
             }
           }
         }
-        .info{
+        
+        .info {
           box-sizing: border-box;
-          h2{
+          
+          h2 {
             font-weight: 500;
             overflow: hidden;
             white-space: nowrap;
@@ -161,9 +179,11 @@
         }
       }
     }
+    
     .page {
       display: flex;
       justify-content: center;
+      
       .el-button {
         margin: 40px 100px;
       }

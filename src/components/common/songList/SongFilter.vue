@@ -4,7 +4,7 @@
       <span @click="showSelectBox" class="select">{{currentTag}}
         <i class="icon iconfont icon-other_xialaliebiao"></i>
         <transition name="el-fade-in-linear">
-        <div v-if="boxFlag" class="selectBox">
+          <div v-if="boxFlag" class="selectBox">
             <div v-for="(item1,index1) in catList.categories" :key="index1" class="item">
               <h2>
                 <i v-if="index1 == 0" class="iconfont icon-yuyan1"></i>
@@ -22,7 +22,7 @@
               </ul>
             </div>
         </div>
-      </transition>
+        </transition>
       </span>
       <ul>
         <li class="hot">热门标签:</li>

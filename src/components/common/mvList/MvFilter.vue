@@ -25,8 +25,7 @@
         <li v-for="(item,index) in gratefulFilter"
             :key="index"
             @click="selectGrateful(item.value,item.label)"
-            :class="[
-               item.label === gratefulActive ? 'active':'']">
+            :class="item.label === gratefulActive ? 'active':''">
           {{item.label}}
         </li>
       </ul>

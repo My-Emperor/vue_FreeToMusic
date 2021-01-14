@@ -41,17 +41,31 @@
       styleAttr: {
         type: String,
         default: "default",
-      }
+      },
+      songType:{
+        type: String,
+        default: "default",
+      },
     },
     methods: {
       toDetail(item) {
+        console.log(item)
+        if (this.songType == 'default'){
+          this.$router.push({
+            path: '/songDetails',
+            query: {
+              id: item.id
+            }
+          })
+        }else if(this.songType == 'singer'){
+          this.$router.push({
+            path: '/albumDetails',
+            query: {
+              id: item.id
+            }
+          })
+        }
         
-        this.$router.push({
-          path: '/songDetails',
-          query: {
-            id: item.id
-          }
-        })
       }
     },
     filters:{

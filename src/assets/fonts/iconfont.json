@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "13926485",
+      "name": "认证",
+      "font_class": "renzheng",
+      "unicode": "e870",
+      "unicode_decimal": 59504
+    },
+    {
       "icon_id": "123774",
       "name": "MV",
       "font_class": "mv",

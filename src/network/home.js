@@ -355,23 +355,39 @@ export function getSingerInfo(id) {
 }
 
 
-// 获取歌手描述
-// 说明 : 调用此接口 , 传入歌手 id, 可获得歌手描述
-//
-// 必选参数 : id: 歌手 id
-//
-// 接口地址 : /artist/desc
-//
-// 调用例子 : /artist/desc?id=6452 ( 周杰伦 )
-//
+/**
+ * 获取专辑详情
+ * @param id 专辑id
+ * @returns {AxiosPromise}
+ */
+export function getAlbumDetails(id) {
+  return request({
+    url: "/album",
+    params: {
+      id,
+    }
+  })
+}
 
-// 获取专辑内容
-// 说明 : 调用此接口 , 传入专辑 id, 可获得专辑内容
-//
-// 必选参数 : id: 专辑 id
-//
-// 接口地址 : /album
-//
-// 调用例子 : /album?id=32311
-//
-// 返回数据如下图 : 获取专辑内容
+/**
+ * 获取专辑热门评论 不传入limit 与 offset
+ * @param id 专辑id
+ * @returns {AxiosPromise}
+ */
+export function getAlbumComment(id,limit,offset) {
+  return request({
+    url: "/comment/album",
+    params: {
+      id,
+      limit,
+      offset
+    }
+  })
+}
+
+
+
+
+
+
+
