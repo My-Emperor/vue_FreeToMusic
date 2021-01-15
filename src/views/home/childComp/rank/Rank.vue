@@ -29,10 +29,6 @@ export default {
         const list = res.list;
         this.cloudList = list;
         this.mediaList = list.splice(4,res.list.length);
-        console.log(this.cloudList)
-        console.log(this.mediaList)
-
-
       })
     }
   },

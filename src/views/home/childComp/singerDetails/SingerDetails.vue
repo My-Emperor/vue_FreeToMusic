@@ -63,11 +63,11 @@
       changePage(type) {
         if (type == 'up') {
           this.songQueryInfo.offset -= 30;
-          console.log(this.songQueryInfo.offset)
+
           this.getSingerSongRef(this.songQueryInfo)
         } else if (type == 'down') {
           this.songQueryInfo.offset += 30;
-          console.log(this.songQueryInfo.offset)
+
           this.getSingerSongRef(this.songQueryInfo)
         } else {
           return

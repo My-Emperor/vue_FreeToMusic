@@ -3,7 +3,7 @@
     <el-container class="container">
       <el-header>
         <!--顶部-->
-        <free-header></free-header>
+        <free-header :index="index"></free-header>
       </el-header>
       <el-main>
         <keep-alive :include="['/rank','/recom','/song','/singer','/mv']">
@@ -32,6 +32,7 @@
     data() {
       return {
         playMusicInfo: null,
+        index: ["0", "1", "2", "3", "4"],
       }
     },
     components: {
@@ -50,7 +51,7 @@
           }
           this.playMusicInfo = res.data[0]
           
-          console.log(res)
+          // console.log(res)
           // this.$refs.audioRef.load();
         })
       },
@@ -58,13 +59,28 @@
         getMusicList(musicId).then(res => {
           if (res.code !== 200) return this.$message.error("歌曲数据获取失败");
           // if (res.privileges[0].freeTrialPrivilege) return this.$message.error("歌曲版权限制,无法播放");
-          console.log(res)
+          // console.log(res)
           this.$store.commit("setPlayerMusicId", res.songs[0].id);
           this.$store.commit("setMusicDetailsList", res.songs[0])
-          console.log(this.$store.state.musicDetailsList)
+          // console.log(this.$store.state.musicDetailsList)
         });
       },
-    }
+    },
+    watch: {
+      // 监听路由变化
+      $route(to) {
+        if (this.index.length == 0) {
+          if (to.path != '/rank' && to.path != '/song' && to.path != '/singer' && to.path != '/mv' && to.path != '/recom') {
+            return
+          }
+          this.index = ["0", "1", "2", "3", "4"];
+        } else {
+          if (to.path != '/rank' && to.path != '/song' && to.path != '/singer' && to.path != '/mv' && to.path != '/recom') {
+            this.index = [];
+          }
+        }
+      }
+    },
   }
 </script>
 

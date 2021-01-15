@@ -14,6 +14,7 @@ const SongDetails = () => import("@/views/home/childComp/songDetails/SongDetails
 const MvDetails = () => import("@/views/home/childComp/mvDetails/MvDetails")
 const SingerDetails =() => import("@/views/home/childComp/singerDetails/SingerDetails")
 const AlbumDetails =() => import("@/views/home/childComp/albumDetails/AlbumDetails")
+const Search =() => import("@/views/home/childComp/search/Search")
 const routes = [
   {
     path: "",
@@ -77,6 +78,11 @@ const routes = [
         //专辑详情
         path: "/albumDetails",
         component: AlbumDetails
+      },
+      {
+        //搜索详情
+        path: "/search",
+        component: Search
       },
     ]
   }

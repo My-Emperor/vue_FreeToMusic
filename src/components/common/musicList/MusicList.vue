@@ -4,8 +4,6 @@
       :data="musicList"
       stripe
       @row-click="playMusic"
-      :header-cell-style="{textAlign: 'center'}"
-      :cell-style="[{ textAlign: 'center' },{ cursor: 'pointer' }]"
       style="width: 100%">
       <el-table-column show-overflow-tooltip type="index" label="序号">
       </el-table-column>
@@ -45,6 +43,8 @@
 
 <style lang="less" scoped>
   .musicList {
-  
+    .el-table {
+      cursor: pointer;
+    }
   }
 </style>

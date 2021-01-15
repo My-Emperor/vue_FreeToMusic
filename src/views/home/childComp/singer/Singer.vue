@@ -119,7 +119,7 @@
       
       //修改分类
       changeType(obj) {
-        console.log(obj)
+
         if (obj.type == "language") {
           this.languageActive = obj.label;
           this.singerInfo.area = obj.value;
@@ -142,11 +142,11 @@
       changePage(type) {
         if (type == 'up') {
           this.singerInfo.offset -= 35;
-          console.log(this.singerInfo.offset)
+
           this.getSingerListRef(this.singerInfo)
         } else if (type == 'down') {
           this.singerInfo.offset += 35;
-          console.log(this.singerInfo.offset)
+
           this.getSingerListRef(this.singerInfo)
         } else {
           return
@@ -155,7 +155,7 @@
       
       getSingerListRef(params) {
         getSingerList(params.type, params.area, params.initial, params.limit, params.offset).then(res => {
-          console.log(res)
+
           if (res.code != 200) return this.$message.error("ERROR!");
           this.singerList = res.artists;
         })

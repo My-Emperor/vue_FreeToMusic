@@ -118,7 +118,7 @@
         getSongComm(params.id, params.limit, params.offset).then(res => {
           if (res.code != 200) return this.$message.error("ERROR!");
           this.commList = res.comments;
-          console.log(this.commList)
+          // console.log(this.commList)
         })
       },
       //获取推荐歌单
@@ -126,7 +126,7 @@
         getSongRecom(id).then(res => {
           if (res.code != 200) return this.$message.error("ERROR!");
           this.recomList = res.playlists;
-          console.log(this.recomList)
+          // console.log(this.recomList)
         })
       },
       //获取歌单收藏者列表
@@ -134,7 +134,7 @@
         getSongSub(params.id, params.limit, params.offset).then(res => {
           if (res.code != 200) return this.$message.error("ERROR!");
           this.likeList = res.subscribers;
-          console.log(this.likeList);
+          // console.log(this.likeList);
         })
       },
       

@@ -86,7 +86,6 @@
       //获取mv的url地址
       getMvUrlRef(id) {
         getMvUrl(id).then(res => {
-          console.log(res)
           if (res.code != 200) return this.$message.error("ERROR!");
           this.mvUrl = res.data.url;
         })
@@ -104,7 +103,6 @@
       getMvCommentRef(params) {
         getMvComment(params.id, params.limit, params.offset).then(res => {
           if (res.code != 200) return this.$message.error("ERROR!");
-          console.log(res)
           this.newCommList = res.comments;
           this.hotCommList = res.hotComments;
           this.pageInfo.total = res.total;

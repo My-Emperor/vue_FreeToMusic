@@ -81,8 +81,6 @@
           this.album = res.album;
           this.albumMusic = res.songs;
           this.singerInfo = res.album.artist;
-          console.log(res)
-
         })
       },
       //获取专辑评论

@@ -7,18 +7,18 @@
       </div>
       <!--导航栏-->
       <el-menu active-text-color="rgb(84,154,171)" :default-active="activeIndex" mode="horizontal" class="el-menu-demo">
-        <el-menu-item index="1" @click="toPage('/home')">发现音乐</el-menu-item>
-        <el-menu-item index="2" @click="toPage('/rank')">排行榜</el-menu-item>
-        <el-menu-item index="3" @click="toPage('/song')">歌单</el-menu-item>
-        <el-menu-item index="4" @click="toPage('/singer')">歌手</el-menu-item>
-        <el-menu-item index="5" @click="toPage('/mv')">MV</el-menu-item>
+        <el-menu-item :index="index[0]" @click="toPage('/home')">发现音乐</el-menu-item>
+        <el-menu-item :index="index[1]" @click="toPage('/rank')">排行榜</el-menu-item>
+        <el-menu-item :index="index[2]" @click="toPage('/song')">歌单</el-menu-item>
+        <el-menu-item :index="index[3]" @click="toPage('/singer')">歌手</el-menu-item>
+        <el-menu-item :index="index[4]" @click="toPage('/mv')">MV</el-menu-item>
       </el-menu>
       <!--搜索框-->
       <div>
         <el-row :gutter="30">
           <el-col :span="25">
             <el-input
-              placeholder="请输入内容"
+              placeholder="音乐 / 歌手 / 歌单 / mv"
               clearable
               v-model="inputValue"
               @keyup.enter.native="toSearch"
@@ -64,9 +64,18 @@
     data() {
       return {
         //导航菜单默认选中项
-        activeIndex: "1",
+        activeIndex: "0",
         //搜索框对象
         inputValue: "",
+        
+      }
+    },
+    props:{
+      index:{
+        type:Array,
+        default(){
+          return []
+        }
       }
     },
     methods: {
@@ -76,9 +85,12 @@
       },
       //搜索
       toSearch() {
-        console.log(this.inputValue)
+        if (this.inputValue == '') return this.$message.error("搜索关键字为空!")
+        this.$store.commit("setSearch", this.inputValue);
+        this.$router.push({
+          path:'/search',
+        })
       },
-      
     }
   }
 </script>
@@ -127,7 +139,9 @@
       color: #409EFF;
     }
   }
-  
+  .active{
+    colro:red;
+  }
   //个人 下拉菜单
   .person {
     width: 125px;

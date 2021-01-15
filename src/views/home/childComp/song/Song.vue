@@ -82,7 +82,7 @@
       getPlayListRef(params) {
         getPlayList(params.order, params.cat, params.limit, params.offset).then(res => {
           if (res.code != 200) return this.$message.error("ERROR!")
-          console.log(res)
+
           this.songList = res.playlists;
           this.queryInfo.total = res.total
         })

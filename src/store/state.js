@@ -12,5 +12,7 @@ export default {
   playerMode:0,
   //是否播放
   isPlayer:true,
+  //搜索关键字
+  keywords:null,
 }
 

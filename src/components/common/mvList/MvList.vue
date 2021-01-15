@@ -22,7 +22,6 @@
             {{item.name}}
           </h2>
         </div>
-      
       </li>
     </ul>
     <div v-if="mvType == 'default'? true:false" class="page">
@@ -108,7 +107,6 @@
         
         &:hover {
           cursor: pointer;
-          
           .smokeIcon {
             display: block !important;
           }

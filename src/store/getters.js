@@ -9,4 +9,8 @@ export default {
     return state.musicDetails
   },
   
+  getSearchKeyWord:state => {
+    return state.keywords
+  }
+  
 }

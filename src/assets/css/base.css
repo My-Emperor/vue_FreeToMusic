@@ -77,5 +77,8 @@ ul li{
   margin: 0;
   padding: 0;
 }
-
+.el-table td,
+.el-table th{
+  text-align: center;
+}
 

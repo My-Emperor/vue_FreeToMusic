@@ -28,6 +28,10 @@ export default {
   changePlayerMode(state,num){
     state.playerMode = num;
   },
+  //设置关键字
+  setSearch(state,keyword){
+    state.keywords = keyword
+  },
   
   setIsPlayer(state,flag){
     state.isPlayer = flag;
