@@ -4,25 +4,7 @@ export default {
     if (String(num).length > len) return num
     return (Array(len).join(0) + num).slice(-len)
   },
-  // localStorage存储
-  setStore(name, content) {
-    let contentClone = content
-    if (!name) return
-    if (typeof content !== 'string') {
-      contentClone = JSON.stringify(contentClone)
-    }
-    window.localStorage.setItem(name, contentClone)
-  },
-  // localStorage获取
-  getStore(name) {
-    if (!name) return null
-    return window.localStorage.getItem(name)
-  },
-  // localStorage删除
-  removeStore(name) {
-    if (!name) return
-    window.localStorage.removeItem(name)
-  },
+
   // 日期格式化
   dateFormat(str, type) {
     let date = new Date(str)
@@ -40,15 +22,7 @@ export default {
       return `${month}/${day} ${hour}:${minute}:${seconds}`
     }
   },
-  // 获取当前时间前后N天前后日期
-  getDateBefore(dayCount) {
-    var date = new Date()
-    date.setDate(date.getDate() + dayCount)
-    let year = date.getFullYear()
-    let month = this.formatZero(date.getMonth() + 1, 2)
-    let day = this.formatZero(date.getDate(), 2)
-    return `${year}-${month}-${day}`
-  },
+
   /**
    * 数字转整数 如 100000 转为10万
    * @param {需要转化的数} num
@@ -99,22 +73,7 @@ export default {
     }
     return formatTime
   },
-  // 转换成秒
-  formatSecond(time) {
-    // 取整
-    time = ~~time
-    var secondTime
-    if (time < 10) {
-      secondTime = '00:0' + time
-    } else if (time < 60) {
-      secondTime = '00:' + time
-    } else {
-      var m = ~~parseInt((time % (1000 * 60 * 60)) / (1000 * 60))
-      var s = ~~parseInt((time % (1000 * 60)) / 1000)
-      secondTime = Number(m * 60 + s)
-    }
-    return secondTime
-  },
+
   // 秒转00:00
   formatSecondTime(interval) {
     interval = interval | 0
@@ -152,35 +111,10 @@ export default {
     }
     return result
   },
-  // 获取是几几后
-  getAstro(timestamp) {
-    let newDate = new Date()
-    newDate.setTime(timestamp)
-    let birthday = newDate.toLocaleDateString(timestamp)
-    let birthdayArr = birthday.split('/')
-    let year = birthdayArr[0].substring(birthdayArr[0].length - 2) + '后'
-    let month = birthdayArr[1]
-    let day = birthdayArr[2]
-    return (
-      year +
-      ' - ' +
-      '魔羯水瓶双鱼白羊金牛双子巨蟹狮子处女天秤天蝎射手魔羯'.substr(
-        month * 2 - (day < '102223444433'.charAt(month - 1) - -19) * 2,
-        2
-      ) +
-      '座'
-    )
-  },
+
   
-  getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  },
   //随机数组排序
-  shuffle(arr) {
-    let i = arr.length;
-    while (i) {
-      let j = Math.floor(Math.random() * i--);
-      [arr[j], arr[i]] = [arr[i], arr[j]];
-    }
+  getRadomIndex(m,n){
+    return Math.floor(Math.random() * (n - m)) + m
   }
 }

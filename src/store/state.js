@@ -14,5 +14,7 @@ export default {
   isPlayer:true,
   //搜索关键字
   keywords:null,
+  //清空列表
+  clearListFlag:false,
 }
 

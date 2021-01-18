@@ -3,7 +3,7 @@
     <h2 class="title"><i></i> 云音乐特色榜</h2>
     <ul class="list">
       <li @click="toDetail(item.id)" class="item" v-for="item in cloudList" :key="item.id">
-        <div class="img" @click="getSheetDetails(item.id)">
+        <div class="img" >
           <el-image :src="item.coverImgUrl"></el-image>
         </div>
         <div class="info">

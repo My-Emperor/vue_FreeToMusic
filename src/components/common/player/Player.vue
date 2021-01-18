@@ -16,14 +16,18 @@
         -->
         <div class="musicText">
           <h2 class="songName">{{ musicDetails.name }}</h2>
-          <p class="singerName">{{ musicDetails.ar[0].name }}</p>
+          <p class="singerName">
+            <span v-for="(item,index) in musicDetails.ar" :key="index">
+              <span v-if="index != 0"> / </span>{{item.name}}
+            </span>
+          </p>
         </div>
         <!--按钮-->
         <div>
-          <span class="clickIcon iconfont icon-shangyiqu left"></span>
+          <span @click="changeMusic('up')" class="clickIcon iconfont icon-shangyiqu left"></span>
           <span v-if="isPlayer" @click="playOrStopMusic" class="clickIcon iconfont icon-icon_bofang stop"></span>
           <span v-else @click="playOrStopMusic" class="clickIcon iconfont icon-bofang player"></span>
-          <span class="clickIcon iconfont icon-xiayiqu right"></span>
+          <span @click="changeMusic('down')" class="clickIcon iconfont icon-xiayiqu right"></span>
         </div>
         
         <!--进度条-->
@@ -48,16 +52,44 @@
             <el-slider @change="moveTransFormVolume" v-model="transFormVolume" :show-tooltip="false"></el-slider>
           </div>
           <!--播放模式-->
-          <span @click="changePlayerMode(1)" v-if="playerMode == 0"
+          <span @click="changePlayerMode(2)" v-if="playerMode == 1"
                 class="clickIcon iconfont icon-suijibofang suiji"></span>
-          <span @click="changePlayerMode(2)" v-else-if="playerMode == 1"
+          <span @click="changePlayerMode(0)" v-else-if="playerMode == 2"
                 class="clickIcon iconfont icon-danquxunhuan danqu"></span>
-          <span @click="changePlayerMode(0)" v-else class="clickIcon iconfont icon-liebiaoxunhuan liebiao"></span>
+          <span @click="changePlayerMode(1)" v-else class="clickIcon iconfont icon-liebiaoxunhuan liebiao"></span>
           <!--播放列表-->
           <span @click="showMusicList" class="clickIcon iconfont icon-bofangduilie liebiao">
             <transition name="el-fade-in-linear">
               <div class="MusicListCard" v-if="musicListFlag">
-                <el-card shadow="always"></el-card>
+                <el-card shadow="always">
+                  <div class="musicList">
+<!--                    <h2>播放列表</h2>-->
+                    <div class="top">
+                      <h2><i
+                        class="iconfont icon-bofangduilie"></i>播放列表 <span>{{this.musicDetailsList.length +1}}</span> </h2>
+                      <span @click="clearPlayerList">清空列表<i class="iconfont icon-qingkong"></i></span>
+                    </div>
+                    <div class="list">
+                      <el-table
+                        :data="musicDetailsList"
+                        stripe
+                        @row-click="playMusic"
+                        style="width: 100%">
+                        <el-table-column show-overflow-tooltip type="index">
+                        </el-table-column>
+                        <el-table-column show-overflow-tooltip prop="name" label="歌曲">
+                        </el-table-column>
+                        <el-table-column show-overflow-tooltip prop="ar[0].name" label="歌手">
+                          <template slot-scope="scope">
+                            <span v-for="(item,index) in scope.row.ar" :key="index">
+                              <span v-if="index != 0"> / </span>{{item.name}}
+                            </span>
+                          </template>
+                        </el-table-column>
+                      </el-table>
+                    </div>
+                  </div>
+                </el-card>
               </div>
             </transition>
           </span>
@@ -65,10 +97,10 @@
       </div>
       
       
-      
       <!--播放详情弹窗-->
       <audio v-if="playMusicInfo"
              @timeupdate="updateTime"
+             @ended="changeMusic('down')"
              :src="playMusicInfo.url" autoplay
              ref="audioRef"></audio>
     </el-card>
@@ -97,12 +129,17 @@
         lastTime: null,
         //歌曲列表flag
         musicListFlag: false,
+        //播放歌曲在列表中的下标
+        playerIdIndex: null,
         
       }
     },
     methods: {
       //updateTime  201.024s
       updateTime() {
+        if (this.clearListFlag == true) {
+          return
+        }
         //使用节流可以减少拖拽bug的出现 但在特殊时间拖拽依然会发生冲突 在拖拽时会与updateTime发生冲突导致拖拽的val值为当前播放值
         // const nowTime = Date.now()
         // const gapTime = 1000;
@@ -135,6 +172,7 @@
       //切换播放模式
       changePlayerMode(num) {
         this.$store.commit("changePlayerMode", num)
+        console.log(this.playerMode)
       },
       handleTouchStart(e) {
         console.log(e);
@@ -164,6 +202,59 @@
       //点击列表按钮判断是否弹出
       showMusicList() {
         this.musicListFlag = !this.musicListFlag;
+      },
+      
+      //播放列表点击播放
+      playMusic(row) {
+        console.log(row)
+        this.$emit("getMusic", row.id)
+      },
+      
+      //上下切换歌曲
+      changeMusic(type) {
+        for (var i = 0; i < this.musicDetailsList.length; i++) {
+          if (this.playerMusicId == this.musicDetailsList[i].id) {
+            this.playerIdIndex = i;
+            break;
+          }
+        }
+        var index = 0;
+        if (this.playerMode === 0) {
+          //0 : 循环播放
+          console.log(1231231)
+          if (type == 'up') {
+            if (this.playerIdIndex == 0) {
+              return
+            }
+            index = this.playerIdIndex - 1;
+          } else if (type == 'down') {
+            if (this.playerIdIndex == this.musicDetailsList.length - 1) {
+              this.playerIdIndex = 0;
+            }
+            index = this.playerIdIndex + 1;
+          }
+          var id = this.musicDetailsList[index].id
+          this.$emit('getMusic', id)
+          
+        } else if (this.playerMode == 1) {
+          //1: 随机播放
+          this.playerIdIndex = this.$utils.getRadomIndex(0, this.musicDetailsList.length);
+          this.$emit('getMusic', this.musicDetailsList[this.playerIdIndex].id)
+          
+        } else if (this.playerMode == 2) {
+          //2: 循环播放
+          this.$refs.audioRef.load();
+        } else {
+          return this.$message.error("ERROR!");
+        }
+      },
+      
+      //清空播放列表
+      clearPlayerList() {
+        this.$refs.audioRef.pause();
+        this.$store.commit('clearMusicDetailsList', []);
+        this.$store.commit('setclearListFlag', true);
+        this.$store.commit('setPlayerMusicId', null)
       },
       // touchMove(e){
       //   console.log(e.targetTouches[0].pageX)
@@ -199,11 +290,13 @@
       playerMusicId() {
         return this.$store.getters.getPlayMusicId;
       },
-      // musicDetailsList(){
-      //   return this.$slots.getters.getMusicDetailsList;
-      // }
+      //播放列表
+      musicDetailsList() {
+        return this.$store.getters.getMusicDetailsList
+      },
       //歌曲详情
       musicDetails() {
+        // console.log(this.$store.getters.getMusicDetails)
         return this.$store.getters.getMusicDetails;
       },
       //播放模式
@@ -212,9 +305,13 @@
       },
       //是否播放
       isPlayer() {
-        console.log(this.$store.state.isPlayer)
+        // console.log(this.$store.state.isPlayer)
         return this.$store.state.isPlayer;
       },
+      //清空列表状态
+      clearListFlag() {
+        return this.$store.state.clearListFlag;
+      }
       // toTransFromWidth() {
       //   return `transform:translateX(${this.transFromWidth + 'px'})`
       // },
@@ -224,17 +321,19 @@
       //playerMusiccId:function(){}简写
       playerMusicId() {
         //播放歌曲的id发生改变 则重置isPlayer
+        if (this.clearListFlag == true) {
+          //清空列表
+          return
+        }
         this.$store.commit("setIsPlayer", true);
         this.$emit("getMusicUrl", this.playerMusicId)
       },
-      // musicDetailsList:function () {
-      //  this.
-      // }
       // 歌曲的详情
       musicDetails() {
         this.musicInfo = this.musicDetails;
         console.log(this.musicInfo.al.picUrl);
-      }
+      },
+      
     }
   }
 </script>
@@ -244,11 +343,12 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-  
+    
     .el-card, .el-message {
       border-radius: 4px;
       overflow: visible;
     }
+    
     .el-card {
       /deep/ .el-card__body {
         padding: 5px;
@@ -277,6 +377,7 @@
           display: block;
           text-align: center;
           width: 200px;
+          margin-left: 5px;
           
           h2 {
             font-size: 18px;
@@ -288,6 +389,9 @@
           
           p {
             font-size: 14px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
           }
         }
         
@@ -399,7 +503,6 @@
         }
         
         
-        
         .el-image {
           width: 4%;
           margin-left: 80px;
@@ -430,23 +533,94 @@
           margin: 0px 20px;
         }
         
-        .liebiao{
+        .liebiao {
           position: relative;
+          
+          
           .MusicListCard {
             position: absolute;
-            top: -420px;
-            left: -125px;
-            width: 250px;
-            height: 400px;
+            top: -491px;
+            left: -175px;
+            width: 350px;
+            height: 470px;
+            display: block;
+            overflow: hidden;
+            
             .el-card {
               width: 100%;
               height: 100%;
+              display: block;
+              overflow-y: scroll;
+              cursor: default;
+              
+              .musicList {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                width: 100%;
+                height: 100%;
+                
+                .top {
+                  width: 100%;
+                  display: flex;
+                  justify-content: space-between;
+                  margin: 5px 0;
+                  color: rgb(84, 154, 171);
+                  
+                  h2 {
+                    margin-left: 7px;
+                    font-size: 18px;
+                    
+                    i {
+                      margin-right: 2px;
+                      font-size: 16px;
+                    }
+                  }
+                  
+                  span {
+                    margin-right: 7px;
+                    font-size: 14px;
+                    cursor: pointer;
+                    
+                    i {
+                      font-size: 16px;
+                    }
+                  }
+                }
+                
+                /*h2 {*/
+                /*  font-size: 18px;*/
+                /*}*/
+                
+                .list {
+                  width: 100%;
+                  height: 100%;
+                  display: block;
+                  
+                  .el-table {
+                    display: block !important;
+                    text-align: center !important;
+                    
+                    tr {
+                      cursor: pointer;
+                    }
+                  }
+                  
+                }
+                
+              }
             }
+          }
+          
+          .el-card::-webkit-scrollbar {
+            display: none;
           }
         }
       }
       
     }
+    
     
   }
 

@@ -1,10 +1,10 @@
 <template>
   <div class="footer">
-    <div>
+    <div class="footer_content content-width">
       <span>MUSIC FREE</span>
-      <div class="footer_content">
-        <a href="#"><span>网易云音乐:<i class="iconfont icon-wangyiyunyinle"></i></span></a>
-        <a href="#"><span>github:<i class="iconfont icon-github"></i></span></a>
+      <div class="link">
+        <a href="https://github.com/My-Emperor"><span><i class="iconfont icon-github"></i>Github</span></a>
+        <a href="https://music.163.com/"><span><i class="iconfont icon-wangyiyunyinle wyy"></i>网易云音乐</span></a>
       </div>
     </div>
   </div>
@@ -17,17 +17,53 @@
 </script>
 
 <style lang="less" scoped>
-.footer{
-  height: 180px;
-  border-top: 1px solid #d3d3d3;
-  background-color: #efefef;
-}
-.footer_content{
-  .iconfont{
-    font-size: 30px;
-    &:hover{
-      color: rgb(84,154,171);
-    };
+  .footer {
+    height: 180px;
+    border-top: 1px solid #d3d3d3;
+    background-color: #efefef;
+    
+    .footer_content {
+      padding: 10px 100px;
+      
+      span {
+        font-size: 18px;
+        font-weight: 700;
+        
+      }
+      
+      .link {
+        margin: 8px 0;
+        font-size: 14px;
+        color: #ca3636;
+        
+        a {
+          display: block;
+          margin: 10px 20px;
+          
+          &:hover {
+            color: rgb(84, 154, 171);
+          }
+          
+          span {
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+            font-size: 16px;
+            
+            i {
+              font-size: 25px;
+              margin: 0 5px;
+            }
+            .wyy{
+              margin: 0 4px;
+              font-size: 28px;
+            }
+          }
+        }
+        
+      }
+      
+    }
+    
   }
-}
 </style>

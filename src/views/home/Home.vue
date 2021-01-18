@@ -14,7 +14,7 @@
         <!--尾部歌曲栏-->
         <free-footer></free-footer>
       </el-footer>
-      <player @getMusicUrl="getMusicUrlRef" :playMusicInfo="playMusicInfo"></player>
+      <player @getMusic="getMusic" @getMusicUrl="getMusicUrlRef" :playMusicInfo="playMusicInfo"></player>
     </el-container>
   </div>
 </template>
@@ -32,7 +32,7 @@
     data() {
       return {
         playMusicInfo: null,
-        index: ["0", "1", "2", "3", "4"],
+        index: '/recom',
       }
     },
     components: {
@@ -50,6 +50,7 @@
             return this.$message.error("版权原因 歌曲无法播放");
           }
           this.playMusicInfo = res.data[0]
+          console.log(this.playMusicInfo)
           
           // console.log(res)
           // this.$refs.audioRef.load();
@@ -58,27 +59,25 @@
       getMusic(musicId) {
         getMusicList(musicId).then(res => {
           if (res.code !== 200) return this.$message.error("歌曲数据获取失败");
+          if (this.$store.state.clearListFlag == true){
+            //如果为清空列表状态 , 重新获取时设置为true以正常显示播放组件
+            this.$store.commit('setclearListFlag', false);
+          }
           // if (res.privileges[0].freeTrialPrivilege) return this.$message.error("歌曲版权限制,无法播放");
           // console.log(res)
           this.$store.commit("setPlayerMusicId", res.songs[0].id);
           this.$store.commit("setMusicDetailsList", res.songs[0])
-          // console.log(this.$store.state.musicDetailsList)
+          console.log(this.$store.state.musicDetailsList)
         });
       },
     },
     watch: {
       // 监听路由变化
       $route(to) {
-        if (this.index.length == 0) {
-          if (to.path != '/rank' && to.path != '/song' && to.path != '/singer' && to.path != '/mv' && to.path != '/recom') {
-            return
-          }
-          this.index = ["0", "1", "2", "3", "4"];
-        } else {
-          if (to.path != '/rank' && to.path != '/song' && to.path != '/singer' && to.path != '/mv' && to.path != '/recom') {
-            this.index = [];
-          }
+        if (to.path != '/rank' && to.path != '/song' && to.path != '/singer' && to.path != '/mv' && to.path != '/recom') {
+          this.index = null;
         }
+        this.index = to.path;
       }
     },
   }

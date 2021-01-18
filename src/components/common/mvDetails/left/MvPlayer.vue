@@ -59,7 +59,7 @@
   .mvPlayer {
     .video {
       width: 950px;
-      height: 550px;
+      height: auto;
     }
     
     .mvInfo {

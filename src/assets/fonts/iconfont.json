@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "10463616",
+      "name": "网易云音乐",
+      "font_class": "wangyiyunyinle",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "13617424",
+      "name": "清空",
+      "font_class": "qingkong",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
       "icon_id": "13926485",
       "name": "认证",
       "font_class": "renzheng",

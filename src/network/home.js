@@ -12,7 +12,7 @@ export function getBanner() {
 
 /**
  * 获取推荐表单
- * @param limit 获取条数
+ * @param limit : 获取条数
  * @returns {AxiosPromise}
  */
 export function getRecomSongList(limit) {
@@ -36,7 +36,7 @@ export function getRecomNewMusicList() {
 
 /**
  * 获取歌曲详情
- * @param ids 歌曲ids 支持多个id 用,隔开
+ * @param ids : 歌曲ids 支持多个id 用,隔开
  * @returns {AxiosPromise}
  */
 export function getMusicList(ids) {
@@ -50,7 +50,7 @@ export function getMusicList(ids) {
 
 /**
  * 获取歌曲url地址
- * @param id 歌曲id
+ * @param id : 歌曲id
  * @returns {*}
  */
 export function getMusicUrl(id) {
@@ -64,8 +64,8 @@ export function getMusicUrl(id) {
 
 /**
  * 获取推荐歌手信息
- * @param offset
- * @param limit
+ * @param offset : 位偏移量
+ * @param limit : 获取数量
  * @returns {AxiosPromise}
  */
 export function getRecomSinger(offset, limit) {
@@ -106,10 +106,10 @@ export function getHotList() {
 
 /**
  * 获取歌单列表
- * @param order  可选值为 'new' 和 'hot', 分别对应最新和最热 , 默认为 'hot'
- * @param cat    tag, 比如 " 华语 "、" 古风 " 、" 欧美 "、" 流行 ", 默认为 "全部",可从歌单分类接口获取(/playlist/catlist)
- * @param limit  取出歌单数量 , 默认为 50
- * @param offset 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*50, 其中 50 为 limit 的值
+ * @param order : 可选值 'new' 和 'hot', 分别对应最新和最热 , 默认为 'hot'
+ * @param cat : tag, 比如 " 华语 "、" 古风 " 、" 欧美 "、" 流行 ", 默认为 "全部",可从歌单分类接口获取(/playlist/catlist)
+ * @param limit : 取出歌单数量 , 默认为 50
+ * @param offset : 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*50, 其中 50 为 limit 的值
  * @returns {AxiosPromise}
  */
 export function getPlayList(order, cat, limit, offset) {
@@ -126,11 +126,11 @@ export function getPlayList(order, cat, limit, offset) {
 
 /**
  * 获取歌手列表
- * @param type 类别
- * @param area 语种
- * @param initial 名称字符
- * @param limit 获取数量
- * @param offset 获取偏移量
+ * @param type : 类别
+ * @param area : 语种
+ * @param initial : 名称字符
+ * @param limit : 获取数量
+ * @param offset : 获取偏移量
  * @returns {AxiosPromise}
  */
 export function getSingerList(type, area, initial, limit, offset) {
@@ -184,9 +184,9 @@ export function getSongDetailsList(id) {
 
 /**
  * 获取歌单收藏者列表
- * @param id 歌单id
- * @param limit 获取数量 默认为 20
- * @param offset 偏移量
+ * @param id : 歌单id
+ * @param limit : 获取数量 默认为 20
+ * @param offset : 偏移量
  * @returns {AxiosPromise}
  */
 export function getSongSub(id, limit, offset) {
@@ -202,7 +202,7 @@ export function getSongSub(id, limit, offset) {
 
 /**
  * 获取相关推荐歌单
- * @param id 歌单id
+ * @param id : 歌单id
  * @returns {AxiosPromise}
  */
 export function getSongRecom(id) {
@@ -216,9 +216,9 @@ export function getSongRecom(id) {
 
 /**
  * 获取歌单评论
- * @param id 歌单id
- * @param limit 获取数量 默认为 20默认为 20
- * @param offset 偏移量
+ * @param id : 歌单id
+ * @param limit : 获取数量 默认为 20默认为 20
+ * @param offset : 偏移量
  * @returns {AxiosPromise}
  */
 export function getSongComm(id, limit, offset) {
@@ -234,8 +234,8 @@ export function getSongComm(id, limit, offset) {
 
 /**
  * 传入 mv id,可获取 mv 播放地址
- * @param id mv id
- * @param r r: 分辨率,默认1080,可从 /mv/detail 接口获取分辨率列表
+ * @param id : mvid
+ * @param r : 分辨率 ,默认1080,可从 /mv/detail 接口获取分辨率列表
  * @returns {AxiosPromise}
  */
 export function getMvUrl(id, r) {
@@ -250,9 +250,9 @@ export function getMvUrl(id, r) {
 
 /**
  * 调用此接口 , 传入音乐 id 和 limit 参数 , 可获得该 mv 的所有评论 ( 不需要 登录 )
- * @param id mv id
- * @param limit 取出评论数量 , 默认为 20
- * @param offset 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*20, 其中 20 为 limit 的值
+ * @param id : mvid
+ * @param limit : 取出数量 , 默认为 20
+ * @param offset : 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*20, 其中 20 为 limit 的值
  * @returns {AxiosPromise}
  */
 export function getMvComment(id, limit, offset) {
@@ -268,7 +268,7 @@ export function getMvComment(id, limit, offset) {
 
 /**
  * 调用此接口 , 传入 mvid ( 在搜索音乐的时候传 type=1004 获得 ) , 可获取对应 MV 数据 , 数据包含 mv 名字 , 歌手 , 发布时间等数据
- * @param id mv 的 id
+ * @param id : mvid
  * @returns {AxiosPromise}
  */
 export function getMvDetails(mvid) {
@@ -282,7 +282,7 @@ export function getMvDetails(mvid) {
 
 /**
  * 调用此接口 , 传入 mvid 可获取相似 mv
- * @param id mv id
+ * @param id : mvid
  * @returns {AxiosPromise}
  */
 export function getMvRecom(mvid) {
@@ -296,7 +296,7 @@ export function getMvRecom(mvid) {
 
 /**
  * 获取歌手的信息与热门歌曲  (所有歌曲需要登录后获取)
- * @param id 歌手id
+ * @param id : 歌手id
  * @returns {AxiosPromise}
  */
 export function getSingerMusic(id) {
@@ -310,7 +310,7 @@ export function getSingerMusic(id) {
 
 /**
  * 调用此接口 , 传入歌手 id, 可获得歌手 mv 信息 , 具体 mv 播放地址可调 用/mv传入此接口获得的 mvid 来拿到
- * @param id 歌手id
+ * @param id : 歌手id
  * @returns {AxiosPromise}
  */
 export function getSingerMv(id) {
@@ -324,12 +324,12 @@ export function getSingerMv(id) {
 
 /**
  * 调用此接口 , 传入歌手 id, 可获得歌手专辑内容
- * @param id
- * @param limit 获取数量
+ * @param id : 歌手id
+  * @param limit 获取数量
  * @param offset 偏移量
  * @returns {AxiosPromise}
  */
-export function getSingerSong(id,limit,offset) {
+export function getSingerSong(id, limit, offset) {
   return request({
     url: "/artist/album",
     params: {
@@ -342,7 +342,7 @@ export function getSingerSong(id,limit,offset) {
 
 /**
  * 获取歌手描述
- * @param id 歌手id
+ * @param id : 歌手id
  * @returns {AxiosPromise}
  */
 export function getSingerInfo(id) {
@@ -357,7 +357,7 @@ export function getSingerInfo(id) {
 
 /**
  * 获取专辑详情
- * @param id 专辑id
+ * @param id : 专辑id
  * @returns {AxiosPromise}
  */
 export function getAlbumDetails(id) {
@@ -371,10 +371,10 @@ export function getAlbumDetails(id) {
 
 /**
  * 获取专辑热门评论 不传入limit 与 offset
- * @param id 专辑id
+ * @param id : 专辑id
  * @returns {AxiosPromise}
  */
-export function getAlbumComment(id,limit,offset) {
+export function getAlbumComment(id, limit, offset) {
   return request({
     url: "/comment/album",
     params: {
@@ -393,7 +393,7 @@ export function getAlbumComment(id,limit,offset) {
  * @param type : 搜索类型 , 默认为 1 即单曲 , 取值意义 : 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合
  * @returns {AxiosPromise}
  */
-export function getSearchContent(keywords,limit,offset,type) {
+export function getSearchContent(keywords, limit, offset, type) {
   return request({
     url: "/cloudsearch",
     params: {

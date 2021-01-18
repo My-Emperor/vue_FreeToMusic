@@ -7,11 +7,11 @@
       </div>
       <!--导航栏-->
       <el-menu active-text-color="rgb(84,154,171)" :default-active="activeIndex" mode="horizontal" class="el-menu-demo">
-        <el-menu-item :index="index[0]" @click="toPage('/home')">发现音乐</el-menu-item>
-        <el-menu-item :index="index[1]" @click="toPage('/rank')">排行榜</el-menu-item>
-        <el-menu-item :index="index[2]" @click="toPage('/song')">歌单</el-menu-item>
-        <el-menu-item :index="index[3]" @click="toPage('/singer')">歌手</el-menu-item>
-        <el-menu-item :index="index[4]" @click="toPage('/mv')">MV</el-menu-item>
+        <el-menu-item :index="'/recom'" @click="toPage('/recom')">发现音乐</el-menu-item>
+        <el-menu-item :index="'/rank'" @click="toPage('/rank')">排行榜</el-menu-item>
+        <el-menu-item :index="'/song'" @click="toPage('/song')">歌单</el-menu-item>
+        <el-menu-item :index="'/singer'" @click="toPage('/singer')">歌手</el-menu-item>
+        <el-menu-item :index="'/mv'" @click="toPage('/mv')">MV</el-menu-item>
       </el-menu>
       <!--搜索框-->
       <div>
@@ -34,26 +34,26 @@
         </el-row>
       </div>
       <!--登录-->
-      <el-button v-if="!this.$store.state.isLogin" @click="toPage('/login')" round icon="el-icon-user-solid">
-        登录
-      </el-button>
+<!--      <el-button v-if="!this.$store.state.isLogin" @click="toPage('/login')" round icon="el-icon-user-solid">-->
+<!--        登录-->
+<!--      </el-button>-->
       <!--登录成功-->
-      <div v-else class="person">
-        <el-avatar :size="40" :src="circleUrl"></el-avatar>
-        <el-dropdown>
-          <span class="el-dropdown-link">
-            名字<i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item icon="el-icon-user" command="personal" @click="toPage('/personal')">个人主页
-            </el-dropdown-item>
-            <el-dropdown-item icon="iconfont icon-xinxi" command="personal">个人消息</el-dropdown-item>
-            <el-dropdown-item icon="iconfont icon-dengji" command="personal">个人等级</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-setting " command="personal">个人设置</el-dropdown-item>
-            <el-dropdown-item icon="iconfont icon-zhuxiao1" divided>注销登录</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </div>
+<!--      <div v-else class="person">-->
+<!--        <el-avatar :size="40" :src="circleUrl"></el-avatar>-->
+<!--        <el-dropdown>-->
+<!--          <span class="el-dropdown-link">-->
+<!--            名字<i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>-->
+<!--          </span>-->
+<!--          <el-dropdown-menu slot="dropdown">-->
+<!--            <el-dropdown-item icon="el-icon-user" command="personal" @click="toPage('/personal')">个人主页-->
+<!--            </el-dropdown-item>-->
+<!--            <el-dropdown-item icon="iconfont icon-xinxi" command="personal">个人消息</el-dropdown-item>-->
+<!--            <el-dropdown-item icon="iconfont icon-dengji" command="personal">个人等级</el-dropdown-item>-->
+<!--            <el-dropdown-item icon="el-icon-setting " command="personal">个人设置</el-dropdown-item>-->
+<!--            <el-dropdown-item icon="iconfont icon-zhuxiao1" divided>注销登录</el-dropdown-item>-->
+<!--          </el-dropdown-menu>-->
+<!--        </el-dropdown>-->
+<!--      </div>-->
     </div>
   </div>
 </template>
@@ -72,10 +72,8 @@
     },
     props:{
       index:{
-        type:Array,
-        default(){
-          return []
-        }
+        type:String,
+        default:'/recom',
       }
     },
     methods: {

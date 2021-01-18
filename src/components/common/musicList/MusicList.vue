@@ -10,6 +10,11 @@
       <el-table-column show-overflow-tooltip prop="name" label="歌曲">
       </el-table-column>
       <el-table-column show-overflow-tooltip prop="ar[0].name" label="歌手">
+        <template slot-scope="scope">
+          <span v-for="(item,index) in scope.row.ar" :key="index">
+            <span v-if="index != 0"> / </span>{{item.name}}
+          </span>
+        </template>
       </el-table-column>
       <el-table-column show-overflow-tooltip prop="al.name" label="专辑">
       </el-table-column>
@@ -37,6 +42,9 @@
       playMusic(row) {
         this.$emit("getMusic", row.id)
       }
+    },
+    mounted() {
+      console.log(this.musicList)
     }
   }
 </script>

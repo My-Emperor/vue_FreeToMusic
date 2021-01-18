@@ -3,7 +3,7 @@ export default {
   setIsLogin(state,flag){
     state.isLogin = flag;
   },
-  //歌曲详情
+  //歌曲列表
   setMusicDetailsList(state,music){
     var flag = true;
     console.log(music)
@@ -15,7 +15,7 @@ export default {
     })
     if (flag){
       //将歌曲添加到歌单列表中
-      state.musicDetailsList.push(music);
+      state.musicDetailsList.unshift(music);
     }
     
   },
@@ -32,7 +32,18 @@ export default {
   setSearch(state,keyword){
     state.keywords = keyword
   },
-  
+  //清空列表
+  clearMusicDetailsList(state,list){
+    state.musicDetailsList = list
+  },
+  //清空歌曲详情
+  clearMusicDetails(state,music){
+    state.musicDetails = music
+  },
+  //设置清空列表状态
+  setclearListFlag(state,flag){
+    state.clearListFlag = flag
+  },
   setIsPlayer(state,flag){
     state.isPlayer = flag;
   }

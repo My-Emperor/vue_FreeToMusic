@@ -92,6 +92,7 @@
         font-size: 14px;
         font-weight: 700;
         flex: 1;
+        
       }
     }
   }

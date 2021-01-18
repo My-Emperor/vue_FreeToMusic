@@ -171,8 +171,8 @@
             font-weight: 500;
             overflow: hidden;
             white-space: nowrap;
-            font-size: 14px;
             text-overflow: ellipsis;
+            font-size: 14px;
           }
         }
       }
