@@ -6,9 +6,7 @@
         <free-header :index="index"></free-header>
       </el-header>
       <el-main>
-        <keep-alive>
           <router-view @getMusic="getMusic"/>
-        </keep-alive>
       </el-main>
       <el-footer>
         <!--尾部歌曲栏-->

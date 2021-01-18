@@ -66,7 +66,7 @@
 <!--                    <h2>播放列表</h2>-->
                     <div class="top">
                       <h2><i
-                        class="iconfont icon-bofangduilie"></i>播放列表 <span>{{this.musicDetailsList.length +1}}</span> </h2>
+                        class="iconfont icon-bofangduilie"></i>播放列表 <span>{{this.musicDetailsList.length}}</span> </h2>
                       <span @click="clearPlayerList">清空列表<i class="iconfont icon-qingkong"></i></span>
                     </div>
                     <div class="list">
@@ -219,17 +219,17 @@
         var index = 0;
         if (this.playerMode === 0) {
           //0 : 循环播放
-          // console.log(1231231)
           if (type == 'up') {
             if (this.playerIdIndex == 0) {
               return
             }
             index = this.playerIdIndex - 1;
           } else if (type == 'down') {
+            index = this.playerIdIndex + 1;
             if (this.playerIdIndex == this.musicDetailsList.length - 1) {
               this.playerIdIndex = 0;
+              index = this.playerIdIndex;
             }
-            index = this.playerIdIndex + 1;
           }
           var id = this.musicDetailsList[index].id
           this.$emit('getMusic', id)
