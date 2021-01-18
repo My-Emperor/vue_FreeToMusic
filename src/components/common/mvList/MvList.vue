@@ -65,7 +65,7 @@
       changePage(type) {
         //发送页码跳转页面事件
         this.$emit('changePage', type);
-        console.log(this.utils)
+        // console.log(this.utils)
       },
       
       //跳转至详情页

@@ -6,7 +6,7 @@
         <free-header :index="index"></free-header>
       </el-header>
       <el-main>
-        <keep-alive :include="['/rank','/recom','/song','/singer','/mv']">
+        <keep-alive>
           <router-view @getMusic="getMusic"/>
         </keep-alive>
       </el-main>
@@ -50,7 +50,7 @@
             return this.$message.error("版权原因 歌曲无法播放");
           }
           this.playMusicInfo = res.data[0]
-          console.log(this.playMusicInfo)
+          // console.log(this.playMusicInfo)
           
           // console.log(res)
           // this.$refs.audioRef.load();
@@ -67,7 +67,7 @@
           // console.log(res)
           this.$store.commit("setPlayerMusicId", res.songs[0].id);
           this.$store.commit("setMusicDetailsList", res.songs[0])
-          console.log(this.$store.state.musicDetailsList)
+          // console.log(this.$store.state.musicDetailsList)
         });
       },
     },

@@ -7,14 +7,14 @@
       </div>
       <!--导航栏-->
       <el-menu active-text-color="rgb(84,154,171)" :default-active="activeIndex" mode="horizontal" class="el-menu-demo">
-        <el-menu-item :index="'/recom'" @click="toPage('/recom')">发现音乐</el-menu-item>
+        <el-menu-item :index="'/recom'"  @click="toPage('/recom')">发现音乐</el-menu-item>
         <el-menu-item :index="'/rank'" @click="toPage('/rank')">排行榜</el-menu-item>
         <el-menu-item :index="'/song'" @click="toPage('/song')">歌单</el-menu-item>
         <el-menu-item :index="'/singer'" @click="toPage('/singer')">歌手</el-menu-item>
         <el-menu-item :index="'/mv'" @click="toPage('/mv')">MV</el-menu-item>
       </el-menu>
       <!--搜索框-->
-      <div>
+      <div class="input">
         <el-row :gutter="30">
           <el-col :span="25">
             <el-input
@@ -64,7 +64,7 @@
     data() {
       return {
         //导航菜单默认选中项
-        activeIndex: "0",
+        activeIndex: "/recom",
         //搜索框对象
         inputValue: "",
         
@@ -134,7 +134,7 @@
   
   .searchBtn {
     &:hover {
-      color: #409EFF;
+      color: rgb(84,154,171);
     }
   }
   .active{
@@ -155,6 +155,14 @@
       font-size: 12px;
       background-color: #fff;
     }
+  }
+
+  .input{
+    margin-right: 25px;
+    .el-input{
+    
+    }
+    
   }
 
 

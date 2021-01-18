@@ -8,7 +8,6 @@ const Recom = () => import("@/views/home/childComp/recom/Recom");
 const Rank = () => import("@/views/home/childComp/rank/Rank");
 const Singer = () => import("@/views/home/childComp/singer/Singer");
 const Song = () => import("@/views/home/childComp/song/Song");
-const Personal = () => import("@/views/home/childComp/personal/Personal");
 const Mv = () => import("@/views/home/childComp/mv/Mv");
 const SongDetails = () => import("@/views/home/childComp/songDetails/SongDetails");
 const MvDetails = () => import("@/views/home/childComp/mvDetails/MvDetails")
@@ -53,11 +52,6 @@ const routes = [
         //mv
         path: "/mv",
         component: Mv
-      },
-      {
-        //个人
-        path: "/personal",
-        component: Personal
       },
       {
         //歌单详情

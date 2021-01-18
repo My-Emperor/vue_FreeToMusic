@@ -71,13 +71,13 @@
       
       //方法结合for循环进行过滤处理
       getFilterCatList(index) {
-        console.log(index)
+        // console.log(index)
         const list = this.catList.sub.filter(val => {
           if (val.category == index) {
             return val;
           }
         })
-        console.log(list)
+        // console.log(list)
         return list
       },
     },

@@ -171,7 +171,7 @@
       
       getSearchContentRef(params) {
         getSearchContent(params.keyword, params.limit, params.offset, params.type).then(res => {
-          console.log(res)
+          // console.log(res)
           if (res.code != 200) return this.$message.error("ERROR!")
           if (params.type == 1) {
             this.searchInfo.type = 1;
@@ -179,20 +179,20 @@
           } else if (params.type == 1000) {
             this.searchInfo.type = 1000;
             this.songList = res.result.playlists
-            console.log(1000)
+            // console.log(1000)
           } else if (params.type == 1004) {
             this.searchInfo.type = 1004;
             this.mvList = res.result.mvs;
-            console.log(1004)
+            // console.log(1004)
           } else if (params.type == 100) {
             this.searchInfo.type = 100;
             this.singerList = res.result.artists;
-            console.log(this.singerList)
+            // console.log(this.singerList)
           } else if (params.type == 10) {
             this.searchInfo.type = 10;
             this.albumList = res.result.albums
-            console.log(this.albumList)
-            console.log(10)
+            // console.log(this.albumList)
+            // console.log(10)
             
           } else {
             return null

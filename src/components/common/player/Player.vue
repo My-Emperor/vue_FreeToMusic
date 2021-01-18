@@ -172,14 +172,12 @@
       //切换播放模式
       changePlayerMode(num) {
         this.$store.commit("changePlayerMode", num)
-        console.log(this.playerMode)
+        // console.log(this.playerMode)
       },
-      handleTouchStart(e) {
-        console.log(e);
-      },
+
       moveTransFormWidth(val) {
         //val 拖拽条进度
-        console.log(val)
+        // console.log(val)
         // if (!val && !this.musicDetails) return;
         this.transFromWidth = val;
         if (this.transFromWidth !== val) return;
@@ -206,7 +204,7 @@
       
       //播放列表点击播放
       playMusic(row) {
-        console.log(row)
+        // console.log(row)
         this.$emit("getMusic", row.id)
       },
       
@@ -221,7 +219,7 @@
         var index = 0;
         if (this.playerMode === 0) {
           //0 : 循环播放
-          console.log(1231231)
+          // console.log(1231231)
           if (type == 'up') {
             if (this.playerIdIndex == 0) {
               return
@@ -331,7 +329,7 @@
       // 歌曲的详情
       musicDetails() {
         this.musicInfo = this.musicDetails;
-        console.log(this.musicInfo.al.picUrl);
+        // console.log(this.musicInfo.al.picUrl);
       },
       
     }

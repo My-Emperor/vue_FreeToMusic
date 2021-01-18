@@ -49,7 +49,7 @@
     },
     methods: {
       toDetail(item) {
-        console.log(item)
+        // console.log(item)
         if (this.songType == 'default'){
           this.$router.push({
             path: '/songDetails',
