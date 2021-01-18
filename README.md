@@ -4,7 +4,7 @@
 [Binaryify/NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
 
 ## 预览地址
-[vue_freetomusic_desktop](http://119.29.193.127:8080)
+[vue_freetomusic_desktop](http://119.29.193.127:80)
 
 ##### 首页
 ![Image text]()
