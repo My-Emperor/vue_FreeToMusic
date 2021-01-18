@@ -7,16 +7,16 @@
 [vue_freetomusic_desktop](http://119.29.193.127:80)
 
 ##### 首页
-![Image text]()
+![Image text](https://github.com/My-Emperor/vue_FreeToMusic/blob/master/static/img_home.png)
 
 ##### 歌单详情
-![Image text]()
+![Image text](https://github.com/My-Emperor/vue_FreeToMusic/blob/master/static/img_song.png)
 
 ##### 歌手详情
-![Image text]()
+![Image text](https://github.com/My-Emperor/vue_FreeToMusic/blob/master/static/img_singer.png)
 
 ##### mv详情
-![Image text](https://image-static.segmentfault.com/196/651/1966510659-5f2a211b3038e)
+![Image text](https://github.com/My-Emperor/vue_FreeToMusic/blob/master/static/img_mv.png)
 
 ## 目录结构
 ##### src:
