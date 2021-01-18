@@ -6,6 +6,9 @@
 ## 预览地址
 [vue_freetomusic_desktop](http://119.29.193.127:80)
 
+### freetomusic v1.0
+#### 后续会完善其余功能与其他不足之处
+
 ##### 首页
 ![Image text](https://github.com/My-Emperor/vue_FreeToMusic/blob/master/static/img_home.png)
 
