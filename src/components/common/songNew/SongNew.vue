@@ -79,20 +79,35 @@
       }
       
       .musicName {
+        display: block;
         font-size: 14px;
         flex: 1;
+        white-space:nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        text-align: center;
       }
       
       .albomName {
-        font-size: 14px;
+        display: block;
+        margin-left: 10px;
         flex: 1.5;
+        overflow: hidden;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        font-size: 14px;
+        text-align: center;
       }
       
       .singerName {
-        font-size: 14px;
-        font-weight: 700;
+        display: block;
         flex: 1;
-        
+        overflow: hidden;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        font-size: 14px;
+        text-align: center;
+        font-weight: 700;
       }
     }
   }

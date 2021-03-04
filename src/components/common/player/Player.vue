@@ -140,7 +140,7 @@
         if (this.clearListFlag == true) {
           return
         }
-        //使用节流可以减少拖拽bug的出现 但在特殊时间拖拽依然会发生冲突 在拖拽时会与updateTime发生冲突导致拖拽的val值为当前播放值
+        // 使用节流可以减少拖拽bug的出现 但在特殊时间拖拽依然会发生冲突 在拖拽时会与updateTime发生冲突导致拖拽的val值为当前播放值
         // const nowTime = Date.now()
         // const gapTime = 1000;
         // if (!this.lastTime || nowTime - this.lastTime > gapTime) {
