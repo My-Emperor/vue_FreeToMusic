@@ -8,7 +8,7 @@
       <div class="section">
         <ul>
           <li v-for="item in likeList" :key="item.id">
-            <img :src="item.avatarUrl" :title="item.nickname">
+            <img :src="item.avatarUrl + '?param=38y38'" :title="item.nickname">
           </li>
         </ul>
       </div>

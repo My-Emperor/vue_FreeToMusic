@@ -4,7 +4,7 @@
     <ul class="list">
       <li @click="toDetail(item.id)" class="item" v-for="item in cloudList" :key="item.id">
         <div class="img" >
-          <el-image :src="item.coverImgUrl"></el-image>
+          <el-image :src="item.coverImgUrl + '?param=300y300'"></el-image>
         </div>
         <div class="info">
           <span>{{item.name}}</span>

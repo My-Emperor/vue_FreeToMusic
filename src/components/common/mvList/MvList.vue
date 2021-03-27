@@ -4,7 +4,7 @@
       <li @click="toDetils(item.id)" class="item" v-for="item in mvList" :key="item.id">
         <div class="img">
           <el-image
-            :src="mvAttr == 'default'?item.cover:item.imgurl"
+            :src="mvAttr == 'default'?item.cover:item.imgurl + 'param='"
             fit="cover"
           ></el-image>
           <div class="smoke">

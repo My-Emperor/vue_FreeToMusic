@@ -5,7 +5,8 @@ export function request(config) {
   const instance = axios.create({
     baseURL: 'http://119.29.193.127:80',
     // baseURL: 'http://localhost:3000',
-    timeout: 5000
+    // baseURL: 'https://nicemusic-api.lxhcool.cn/',
+    // timeout: 5000
   })
 
   // axios的拦截器

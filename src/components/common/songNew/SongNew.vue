@@ -7,8 +7,8 @@
           <!--图片-->
           <div class="img">
             <el-image
-              :src="item.al.picUrl"
-              fit="cover"
+              :key="item.al.picUrl + '?param=200y200'"
+              :src="item.al.picUrl + '?param=200y200'"
               lazy
             ></el-image>
           </div>

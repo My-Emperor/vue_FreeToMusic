@@ -10,6 +10,7 @@
       <el-table-column show-overflow-tooltip prop="name" label="歌曲">
       </el-table-column>
       <el-table-column show-overflow-tooltip prop="ar[0].name" label="歌手">
+        <!--利用作用域插槽将所有歌手显示-->
         <template slot-scope="scope">
           <span v-for="(item,index) in scope.row.ar" :key="index">
             <span v-if="index != 0"> / </span>{{item.name}}

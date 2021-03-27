@@ -83,9 +83,8 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  //BUG: 刷新出现Cannot GET /recom
+  // BUG: 刷新出现Cannot GET /recom
   // mode: 'history',
-  
   base: process.env.BASE_URL,
   routes
 })

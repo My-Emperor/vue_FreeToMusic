@@ -3,7 +3,7 @@
     <el-card v-if="playerMusicId">
       <div class="content-width">
         <!--图片-->
-        <!--        <img :src="musicInfo.al.picUrl" alt="">-->
+        <!--<img :src="musicInfo.al.picUrl" alt="">-->
         <el-image
           :src="musicDetails.al.picUrl"
           fit="cover"
@@ -174,7 +174,7 @@
         this.$store.commit("changePlayerMode", num)
         // console.log(this.playerMode)
       },
-
+      
       moveTransFormWidth(val) {
         //val 拖拽条进度
         // console.log(val)
@@ -274,7 +274,6 @@
     activated() {
     },
     mounted() {
-    
     },
     props: {
       //即将播放歌曲内容的信息
@@ -331,7 +330,6 @@
         this.musicInfo = this.musicDetails;
         // console.log(this.musicInfo.al.picUrl);
       },
-      
     }
   }
 </script>
@@ -616,10 +614,7 @@
           }
         }
       }
-      
     }
-    
-    
   }
 
 

@@ -8,15 +8,15 @@
       @click="toDetail(item)">
       <div class="item-box">
         <el-image
-          :src="imageUrlAttr === 'home' ? item.picUrl : item.coverImgUrl"
-          fit="cover"
+          :key="imageUrlAttr === 'home' ? item.picUrl + '?param=300y300' : item.coverImgUrl + '?param=300y300'"
+          :src="imageUrlAttr === 'home' ? item.picUrl + '?param=300y300' : item.coverImgUrl + '?param=300y300'"
+          lazy
         ></el-image>
       </div>
       <div class="item-title">
         {{item.name}}
         <span v-if="item.publishTime">{{item.publishTime|formatTime(that)}}</span>
       </div>
-      
     </div>
   </div>
 </template>

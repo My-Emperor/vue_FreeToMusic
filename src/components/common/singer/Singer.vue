@@ -6,8 +6,10 @@
         <div class="img">
           <el-image
               style="width: 100px; height: 100px"
-              :src="item.img1v1Url"
-              fit="cover"></el-image>
+              :key="item.img1v1Url + '?param=150y150'"
+              :src="item.img1v1Url + '?param=150y150'"
+              lazy
+          ></el-image>
         </div>
         <div class="info">
           <span>{{ item.name }}</span>

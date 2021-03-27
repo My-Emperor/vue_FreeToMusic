@@ -9,7 +9,7 @@
         <ul>
           <li @click="toDetail(item.id)" v-for="item in recomList" :key="item.id">
             <div class="img">
-              <img :src="item.coverImgUrl">
+              <img :src="item.coverImgUrl + '?param=50y50'">
             </div>
             <div class="info">
               <span class="songName">{{item.name}}</span>

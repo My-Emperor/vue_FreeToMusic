@@ -18,12 +18,12 @@
 </template>
 
 <script>
-  import FreeHeader from 'components/common/header/Header'
-  import FreeFooter from 'components/common/footer/Footer'
+  import FreeHeader from 'components/common/header/Header';
+  import FreeFooter from 'components/common/footer/Footer';
   import Player from "components/common/player/Player";
   
-  import {getMusicUrl} from "network/home"
-  import {getMusicList} from "network/home"
+  import {getMusicUrl} from "network/home";
+  import {getMusicList} from "network/home";
   
   export default {
     name: "Home",

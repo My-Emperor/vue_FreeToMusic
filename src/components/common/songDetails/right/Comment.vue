@@ -9,7 +9,7 @@
         <ul>
           <li v-for="item in commList" :key="item.id">
             <div class="img">
-              <img :src="item.user.avatarUrl" >
+              <img :src="item.user.avatarUrl + '?param=50y50'" >
             </div>
             <div class="info">
               <span class="username">

@@ -3,8 +3,10 @@
     <div class="img">
       <el-image
         style="width: 250px; height: 250px"
-        :src="singerInfo.picUrl"
-        fit="cover"></el-image>
+        :src="singerInfo.picUrl + '?param=250y250'"
+        fit="cover"
+        lazy
+      ></el-image>
     </div>
     <div class="info">
       <h2 class="name">{{singerInfo.name}}</h2> <span class="alias" v-if="singerInfo.alias.length">{{singerInfo.alias[0]}}</span>

@@ -17,7 +17,7 @@
         </div>
         <span v-if="descHeight > 40" @click="showDescribe" class="showDescribe">
             <i v-if="isShowDescribe">收起...</i> <i v-else>全部...</i>
-          </span>
+        </span>
       </div>
     </div>
     <transition name="el-fade-in-linear">
