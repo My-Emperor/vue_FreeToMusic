@@ -8,9 +8,8 @@
       @click="toDetail(item)">
       <div class="item-box">
         <el-image
-          :key="imageUrlAttr === 'home' ? item.picUrl + '?param=300y300' : item.coverImgUrl + '?param=300y300'"
+          :key="imageUrlAttr === 'home' ? item.picUrl : item.coverImgUrl"
           :src="imageUrlAttr === 'home' ? item.picUrl + '?param=300y300' : item.coverImgUrl + '?param=300y300'"
-          lazy
         ></el-image>
       </div>
       <div class="item-title">

@@ -5,7 +5,7 @@ export function request(config) {
   const instance = axios.create({
     baseURL: 'http://119.29.193.127:80',
     // baseURL: 'http://localhost:3000',
-    // baseURL: 'https://nicemusic-api.lxhcool.cn/',
+ 
     // timeout: 5000
   })
 
@@ -19,6 +19,7 @@ export function request(config) {
   instance.interceptors.response.use(res => {
     return res.data
   })
+
 
   // 3.发送真正的网络请求
   return instance(config)

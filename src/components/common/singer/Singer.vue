@@ -6,7 +6,7 @@
         <div class="img">
           <el-image
               style="width: 100px; height: 100px"
-              :key="item.img1v1Url + '?param=150y150'"
+              :key="item.img1v1Url"
               :src="item.img1v1Url + '?param=150y150'"
               lazy
           ></el-image>

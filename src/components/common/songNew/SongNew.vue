@@ -7,7 +7,7 @@
           <!--图片-->
           <div class="img">
             <el-image
-              :key="item.al.picUrl + '?param=200y200'"
+              :key="item.al.picUrl"
               :src="item.al.picUrl + '?param=200y200'"
               lazy
             ></el-image>

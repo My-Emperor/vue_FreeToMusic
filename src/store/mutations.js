@@ -44,7 +44,20 @@ export default {
   setclearListFlag(state,flag){
     state.clearListFlag = flag
   },
+  //是否播放
   setIsPlayer(state,flag){
     state.isPlayer = flag;
+  },
+  //删除列表音乐(无版权音乐)
+  removeMusicList(state,musicId){
+    console.log(state.musicDetailsList)
+    for (let [i,musicObj] of state.musicDetailsList.entries()) {
+      console.log(i)
+      if (musicObj.id == musicId){
+        console.log(true)
+        state.musicDetailsList.splice(i,1);
+        console.log(state.musicDetailsList)
+      }
+    }
   }
 }

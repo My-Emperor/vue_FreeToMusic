@@ -45,10 +45,14 @@
           if (res.code !== 200) return this.$message.error("歌曲数据获取失败");
           if (res.data[0].br == 0) {
             this.playMusicInfo = null;
+            //无法播放 ,从歌单中删除
+            this.$store.commit("removeMusicList",id)
             return this.$message.error("版权原因 歌曲无法播放");
+  
           }
           this.playMusicInfo = res.data[0]
           // console.log(this.playMusicInfo)
+          //
           
           // console.log(res)
           // this.$refs.audioRef.load();
