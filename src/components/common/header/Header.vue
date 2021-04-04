@@ -98,8 +98,6 @@
     position: fixed;
     top: 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     height: 70px;
     box-shadow: 0 5px 35px -1px rgba(2, 10, 38, .1);

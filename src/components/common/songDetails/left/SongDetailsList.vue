@@ -176,7 +176,6 @@
             display: block;
             text-overflow: ellipsis;
             overflow: hidden;
-            
             span {
               font-size: 15px;
               font-weight: 700;

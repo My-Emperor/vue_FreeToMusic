@@ -119,7 +119,13 @@
           .el-image {
             width: 100%;
           }
-          
+          /deep/ .el-image__inner--center{
+            -ms-transform: translate(0);
+            transform: translate(0);
+            position: static;
+            top: 0;
+            left: 0;
+          }
           .smokeIcon {
             position: absolute;
             top: 50%;

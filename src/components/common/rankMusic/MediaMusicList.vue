@@ -63,6 +63,13 @@ export default {
       .el-image{
         box-shadow: 0px 0px 12px #7b7b7b;
       }
+      /deep/ .el-image__inner--center{
+        -ms-transform: translate(0);
+        transform: translate(0);
+        position: static;
+        top: 0;
+        left: 0;
+      }
     }
     .info{
       padding-top: 10px;

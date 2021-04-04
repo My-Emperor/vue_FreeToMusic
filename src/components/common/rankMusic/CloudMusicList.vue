@@ -63,6 +63,7 @@ export default {
       .el-image{
         box-shadow: 0px 0px 12px #7b7b7b;
       }
+
     }
     .info{
       padding-top: 10px;

@@ -112,10 +112,6 @@
 </script>
 
 <style lang="less" scoped>
-  .free_recom {
-    display: flex;
-    justify-content: center;
-  }
   
   .recom_body {
     padding-left: 30px;

@@ -98,3 +98,11 @@ ul li{
   border: none;
   border-radius: 0;
 }
+
+.el-image__inner--center{
+  -ms-transform: translate(0);
+  transform: translate(0);
+  position: static;
+  top: 0;
+  left: 0;
+}

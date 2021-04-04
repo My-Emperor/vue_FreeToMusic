@@ -52,6 +52,7 @@
 
 <style lang="less" scoped>
   .musicList {
+    width: 100%;
     .el-table {
       cursor: pointer;
     }

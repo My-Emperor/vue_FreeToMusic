@@ -9,7 +9,6 @@
             <el-image
               :key="item.al.picUrl"
               :src="item.al.picUrl + '?param=200y200'"
-              lazy
             ></el-image>
           </div>
           <!--歌曲名称-->
@@ -77,7 +76,6 @@
         margin: 0px 25px;
         padding: 5px;
       }
-      
       .musicName {
         display: block;
         font-size: 14px;

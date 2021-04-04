@@ -5,7 +5,6 @@
         style="width: 250px; height: 250px"
         :src="singerInfo.picUrl + '?param=250y250'"
         fit="cover"
-        lazy
       ></el-image>
     </div>
     <div class="info">

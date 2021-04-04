@@ -1,7 +1,7 @@
 <template>
   <div class="list">
     <div
-      :style="[{'flex': styleAttr == 'singer'?'0 0 18.5%':'0 0 13.5%'}]"
+      :style="[{'flex': styleAttr == 'singer'? isIE?'0 0 17%':'0 0 18.5%':isIE?'0 0 12%':'0 0 13.5%'}]"
       class="item"
       v-for="item of sheetList"
       :key="item.id"
@@ -25,7 +25,8 @@
   export default {
     data() {
       return {
-        that:this,
+        that: this,
+        isIE: false
       }
     },
     props: {
@@ -41,7 +42,7 @@
         type: String,
         default: "default",
       },
-      songType:{
+      songType: {
         type: String,
         default: "default",
       },
@@ -49,14 +50,14 @@
     methods: {
       toDetail(item) {
         // console.log(item)
-        if (this.songType == 'default'){
+        if (this.songType == 'default') {
           this.$router.push({
             path: '/songDetails',
             query: {
               id: item.id
             }
           })
-        }else if(this.songType == 'singer'){
+        } else if (this.songType == 'singer') {
           this.$router.push({
             path: '/albumDetails',
             query: {
@@ -67,15 +68,21 @@
         
       }
     },
-    filters:{
-      formatTime(time,that){
+    filters: {
+      formatTime(time, that) {
         const type = 'YYYY-MM-DD';
-        return that.$utils.dateFormat(time,type);
+        return that.$utils.dateFormat(time, type);
       },
     },
     created() {
     },
     mounted() {
+      //判断是否是ie浏览器
+      //主要解决ie浏览器宽度显示 调整flex-basis值
+      //通过判断ie独有属性 window.activeXObject
+      if (!!window.ActiveXObject || "ActiveXObject" in window) {
+        this.isIE = true;
+      }
     }
   }
 </script>
@@ -87,7 +94,7 @@
     
     .item {
       margin-left: 10px;
-      padding: 0 12px 30px;
+      padding: 0 12px 30px 5px;
       flex: 0 0 13.5%;
       justify-content: left;
       /*1 0 18.5%*/
@@ -119,7 +126,8 @@
         font-size: 13px;
         font-weight: 700;
         line-height: 1.3;
-        span{
+        
+        span {
           color: #7b7b7b;
           font-size: 14px;
           font-weight: 500;
