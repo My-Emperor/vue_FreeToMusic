@@ -4,7 +4,7 @@
       <span>MUSIC FREE</span>
       <div class="link">
         <a href="https://github.com/My-Emperor" target="_blank"><span><i class="iconfont icon-github"></i>Github</span></a>
-        <a href="https://gitee.com/wm1045266943/vue_freetomusic/tree/master/vue_FreeToMusic-master" target="_blank"><span><i class="iconfont icon-gitee Gitee"></i>Gitee</span></a>
+        <a href="https://gitee.com/wm1045266943/vue_freetomusic" target="_blank"><span><i class="iconfont icon-gitee Gitee"></i>Gitee</span></a>
         <a href="https://music.163.com/" target="_blank"><span><i class="iconfont icon-wangyiyunyinle wyy"></i>网易云音乐</span></a>
       </div>
     </div>
