@@ -7,10 +7,9 @@
           <!--图片-->
           <div class="img">
             <el-image
-              :key="item.al.picUrl"
               :src="item.al.picUrl + '?param=200y200'"
             ></el-image>
-          </div>
+          </div >
           <!--歌曲名称-->
           <span class="musicName">{{item.name}}</span>
           <!--专辑名称-->

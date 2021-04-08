@@ -6,7 +6,7 @@
       <ul>
         <li @click="toDetail(item.id)" v-for="item in mvRecomList" :key="item.id">
           <div class="img">
-            <img :src="item.cover">
+            <img :src="item.cover+'?param=318y178'">
             <div  class="smokeIcon">
               <span class="iconfont icon-bofang"></span>
             </div>

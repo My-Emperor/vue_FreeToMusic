@@ -77,8 +77,9 @@ export default {
   // 秒转00:00
   formatSecondTime(interval) {
     interval = interval | 0
-    const m = (interval / 60) | 0
-    const s = interval % 60
+    const m = (interval / 60) | 0 // 获取 分数
+    const s = interval % 60 //获取 秒数
+    //补零返回
     return `${this.formatZero(m, 2)}:${this.formatZero(s, 2)}`
   },
   // 时间戳转换成几分钟前，几小时前，几天前

@@ -11,7 +11,7 @@
         <div class="info">
           <h2 class="title">{{songDetails.detailsName}}</h2>
           <div class="author">
-            <el-image :src="songDetails.authorImg" fit="cover"></el-image>
+            <el-image :src="songDetails.authorImg + '?param=130y130' " fit="cover"></el-image>
             <span>{{songDetails.authorName}}</span>
           </div>
           <div class="tag" v-if="songDetails.detailsTag.length == 0?false:true">
