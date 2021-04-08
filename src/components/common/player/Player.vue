@@ -243,7 +243,7 @@
           //2: 循环播放
           this.$refs.audioRef.load();
         } else {
-          return this.$message.error("ERROR!");
+          // return this.$message.error("ERROR!");
         }
       },
       

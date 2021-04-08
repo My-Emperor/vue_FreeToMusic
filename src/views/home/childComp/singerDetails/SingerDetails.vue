@@ -77,7 +77,7 @@
       //获取歌手歌曲列表
       getSingerMusicRef(id) {
         getSingerMusic(id).then(res => {
-          if (res.code != 200) return this.$message.error("ERROR!");
+          // if (res.code != 200) return this.$message.error("ERROR!");
           this.singerInfo = res.artist;
           this.hotSongsList = res.hotSongs;
         })
@@ -86,7 +86,7 @@
       //获取歌手专辑列表
       getSingerSongRef(params) {
         getSingerSong(params.id, params.limit, params.offset).then(res => {
-          if (res.code != 200) return this.$message.error("ERROR!");
+          // if (res.code != 200) return this.$message.error("ERROR!");
           this.songsList = res.hotAlbums;
         })
       },
@@ -94,7 +94,7 @@
       //获取歌手MV
       getSingerMvRef(id){
         getSingerMv(id).then(res => {
-          if (res.code != 200) return this.$message.error("ERROR!");
+          // if (res.code != 200) return this.$message.error("ERROR!");
           this.mvList = res.mvs;
         })
       },
@@ -102,7 +102,7 @@
       //获取歌手介绍
       getSingerInfoRef(id){
         getSingerInfo(id).then(res => {
-          if (res.code != 200) return this.$message.error("ERROR!");
+          // if (res.code != 200) return this.$message.error("ERROR!");
           this.singInfo = res;
         })
       }

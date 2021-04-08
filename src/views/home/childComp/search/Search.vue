@@ -172,7 +172,7 @@
       getSearchContentRef(params) {
         getSearchContent(params.keyword, params.limit, params.offset, params.type).then(res => {
           // console.log(res)
-          if (res.code != 200) return this.$message.error("ERROR!")
+          // if (res.code != 200) return this.$message.error("ERROR!")
           if (params.type == 1) {
             this.searchInfo.type = 1;
             this.musicList = res.result.songs;

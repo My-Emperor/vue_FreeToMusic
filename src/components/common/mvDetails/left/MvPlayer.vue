@@ -58,10 +58,13 @@
 <style lang="less" scoped>
   .mvPlayer {
     .video {
-      width: 950px;
-      height: auto;
+      width: 938px;
+      height: 528px;
+      /*object-fit: contain;*/
+      &:focus {
+        outline:none;
+      }
     }
-    
     .mvInfo {
       margin-top: 14px;
       

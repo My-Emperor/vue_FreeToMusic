@@ -85,7 +85,7 @@
       getSongDetailsListRef(id) {
         getSongDetailsList(id).then(res => {
           // console.log(res)
-          if (res.code != 200) return this.$message.error("ERROR!");
+          // if (res.code != 200) return this.$message.error("ERROR!");
           this.songDetails.detailsName = res.playlist.name;
           this.songDetails.detailsImg = res.playlist.coverImgUrl;
           this.songDetails.detailsInfo = res.playlist.description;
@@ -107,7 +107,7 @@
       //获取歌单中歌曲列表
       getMusicListRef(ids) {
         getMusicList(ids).then(res => {
-          if (res.code != 200) return this.$message.error("ERROR!");
+          // if (res.code != 200) return this.$message.error("ERROR!");
           this.songDetails.musicList = res.songs;
   
         })
@@ -116,7 +116,7 @@
       //获取歌单评论
       getSongCommRef(params) {
         getSongComm(params.id, params.limit, params.offset).then(res => {
-          if (res.code != 200) return this.$message.error("ERROR!");
+          // if (res.code != 200) return this.$message.error("ERROR!");
           this.commList = res.comments;
           // console.log(this.commList)
         })
@@ -124,7 +124,7 @@
       //获取推荐歌单
       getSongRecomRef(id) {
         getSongRecom(id).then(res => {
-          if (res.code != 200) return this.$message.error("ERROR!");
+          // if (res.code != 200) return this.$message.error("ERROR!");
           this.recomList = res.playlists;
           // console.log(this.recomList)
         })
@@ -132,7 +132,7 @@
       //获取歌单收藏者列表
       getSongSubRef(params) {
         getSongSub(params.id, params.limit, params.offset).then(res => {
-          if (res.code != 200) return this.$message.error("ERROR!");
+          // if (res.code != 200) return this.$message.error("ERROR!");
           this.likeList = res.subscribers;
           // console.log(this.likeList);
         })

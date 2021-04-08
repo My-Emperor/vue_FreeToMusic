@@ -156,7 +156,7 @@
       getSingerListRef(params) {
         getSingerList(params.type, params.area, params.initial, params.limit, params.offset).then(res => {
 
-          if (res.code != 200) return this.$message.error("ERROR!");
+          // if (res.code != 200) return this.$message.error("ERROR!");
           this.singerList = res.artists;
         })
       }

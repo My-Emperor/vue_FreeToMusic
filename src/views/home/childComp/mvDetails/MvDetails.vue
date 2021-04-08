@@ -86,7 +86,7 @@
       //获取mv的url地址
       getMvUrlRef(id) {
         getMvUrl(id).then(res => {
-          if (res.code != 200) return this.$message.error("ERROR!");
+          // if (res.code != 200) return this.$message.error("ERROR!");
           this.mvUrl = res.data.url;
         })
       },
@@ -94,7 +94,7 @@
       //获取mv详情
       getMvDetailsRef(id) {
         getMvDetails(id).then(res => {
-          if (res.code != 200) return this.$message.error("ERROR!");
+          // if (res.code != 200) return this.$message.error("ERROR!");
           this.mvDetails = res.data
         })
       },
@@ -102,7 +102,7 @@
       //获取歌曲评论
       getMvCommentRef(params) {
         getMvComment(params.id, params.limit, params.offset).then(res => {
-          if (res.code != 200) return this.$message.error("ERROR!");
+          // if (res.code != 200) return this.$message.error("ERROR!");
           this.newCommList = res.comments;
           this.hotCommList = res.hotComments;
           this.pageInfo.total = res.total;
@@ -112,7 +112,7 @@
       //获取相关推荐mv
       getMvRecomRef(id){
         getMvRecom(id).then(res => {
-          if (res.code != 200) return this.$message.error("ERROR!");
+          // if (res.code != 200) return this.$message.error("ERROR!");
           this.mvRecomList = res.mvs;
         })
       }

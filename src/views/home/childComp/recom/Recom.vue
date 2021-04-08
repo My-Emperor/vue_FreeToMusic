@@ -66,20 +66,20 @@
       //获取banner
       async getBannerRef() {
         let res = await getBanner()
-        if (res.code !== 200) return this.$message.error("banner获取失败")
+        // if (res.code !== 200) return this.$message.error("banner获取失败")
         this.banner = res.banners;
         // console.log(this.banner)
       },
       //获取推荐歌单
       async getRecomSongListRef(limit) {
         let res = await getRecomSongList(limit)
-        if (res.code !== 200) return this.$message.error("推荐歌单数据获取失败")
+        // if (res.code !== 200) return this.$message.error("推荐歌单数据获取失败")
         this.recomSongInfo.songList = res.result;
       },
       //获取推荐歌曲
       async getRecomNewMusicListRef(list) {
         let res = await getRecomNewMusicList()
-        if (res.code !== 200) this.$message.error("推荐歌曲数据获取失败");
+        // if (res.code !== 200) this.$message.error("推荐歌曲数据获取失败");
         res.result.forEach(item => {
           this.getMusicListRef(item.id, list)
         })
@@ -87,7 +87,7 @@
       //获取歌曲详细信息并保存到对象中
       async getMusicListRef(id, list) {
         let res = await getMusicList(id)
-        if (res.code !== 200) this.$message.error("推荐歌曲数据获取失败");
+        // if (res.code !== 200) this.$message.error("推荐歌曲数据获取失败");
         // console.log(res)
         list.push(res.songs[0]);
       },

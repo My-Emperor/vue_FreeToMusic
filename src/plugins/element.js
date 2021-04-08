@@ -58,7 +58,5 @@ Vue.use(TabPane)
 
 
 
-
-
 //消息组件需要进行全局挂载
 Vue.prototype.$message = Message;

@@ -77,7 +77,7 @@
       //获取专辑详情
       getAlbumDetailsRef(id) {
         getAlbumDetails(id).then(res => {
-          if (res.code != 200) return this.$message.error("ERRPR!");
+          // if (res.code != 200) return this.$message.error("ERRPR!");
           this.album = res.album;
           this.albumMusic = res.songs;
           this.singerInfo = res.album.artist;
@@ -86,7 +86,7 @@
       //获取专辑评论
       getAlbumCommentRef(params) {
         getAlbumComment(params.id,params.limit,params.offset).then(res => {
-          if (res.code != 200) return this.$message.error("ERRPR!");
+          // if (res.code != 200) return this.$message.error("ERRPR!");
           this.hotComments = res.hotComments;
           this.newComments = res.comments;
           this.pageInfo.total = res.total

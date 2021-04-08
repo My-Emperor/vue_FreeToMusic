@@ -42,7 +42,7 @@
       //获取歌曲url
       getMusicUrlRef(id) {
         getMusicUrl(id).then(res => {
-          if (res.code !== 200) return this.$message.error("歌曲数据获取失败");
+          // if (res.code !== 200) return this.$message.error("歌曲数据获取失败");
           if (res.data[0].br == 0) {
             this.playMusicInfo = null;
             //无法播放 ,从歌单中删除
@@ -60,7 +60,7 @@
       },
       getMusic(musicId) {
         getMusicList(musicId).then(res => {
-          if (res.code !== 200) return this.$message.error("歌曲数据获取失败");
+          // if (res.code !== 200) return this.$message.error("歌曲数据获取失败");
           if (this.$store.state.clearListFlag == true){
             //如果为清空列表状态 , 重新获取时设置为true以正常显示播放组件
             this.$store.commit('setclearListFlag', false);

@@ -142,7 +142,7 @@
       
       getMvListRef(params) {
         getMvList(params.area, params.type, params.order, params.limit, params.offset).then(res => {
-          if (res.code != 200) return this.$message.error("ERROR!");
+          // if (res.code != 200) return this.$message.error("ERROR!");
           this.mvList = res.data;
         })
       },
