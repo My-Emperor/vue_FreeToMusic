@@ -1,15 +1,28 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { createStore } from 'vuex'
 
-Vue.use(Vuex)
-import actions from './actions'
-import mutations from './mutations'
-import getters from './getters'
-import state from './state'
-export default new Vuex.Store({
-  state,
-  mutations,
-  actions,
-  getters,
-
+export default createStore({
+  state: {
+    //屏幕宽度基准
+    innerWidth:1336,
+    //是否pc端
+    isPc:true,
+  },
+  getters: {
+  },
+  mutations: {
+    //修改屏幕宽度
+    updateInnerWidth(state,innerWidth){
+      console.log("state:",state.innerWidth)
+      console.log("params",innerWidth)
+      state.innerWidth = innerWidth;
+    },
+    //是否pc
+    updateIsPc(state,isPc){
+      state.isPc = isPc;
+    }
+  },
+  actions: {
+  },
+  modules: {
+  }
 })
