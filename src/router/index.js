@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 //首页
 const HOME = ()=> import('../views/home.vue');
@@ -6,6 +6,7 @@ const RECOM = ()=>import('../components/iphone/iphone-view/iphone-recom')
 const RANK = ()=>import('../components/iphone/iphone-view/iphone-rank')
 const SHEET = ()=>import('../components/iphone/iphone-view/iphone-sheet')
 const MV = ()=>import('../components/iphone/iphone-view/iphone-mv')
+const SEARCH = ()=>import('../components/iphone/iphone-view/iphone-search')
 const routes = [
   {
     path: "",
@@ -21,39 +22,43 @@ const routes = [
       {
         //推荐
         path: "/recom",
-        component: RECOM
+        component: RECOM,
+        meta: { title: '首页'}
       },
       {
-        //推荐
+        //排行
         path: "/rank",
-        component: RANK
+        component: RANK,
+        meta: { title: '排行'}
       },
       {
         //推荐
         path: "/sheet",
-        component: SHEET
+        component: SHEET,
+        meta: { title: '歌单'}
       },
       {
         //mv
         path: "/mv",
-        component: MV
+        component: MV,
+        meta: { title: 'MV'}
+      },
+      {
+        //search
+        path: "/search",
+        component: SEARCH,
+        meta: { title: '搜索'}
       },
     ]
 
   },
-  // {
-  //   path: '/about',
-  //   name: 'about',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  // }
+
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes
 })
+
 
 export default router

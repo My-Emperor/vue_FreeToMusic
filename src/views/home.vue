@@ -12,7 +12,6 @@ import {computed} from "vue";
 import {useStore} from "vuex";
 
 export default {
-  name: "home",
   components: {
     iphoneHome,
     pcHome

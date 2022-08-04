@@ -7,6 +7,9 @@ const {ElementPlusResolver} = require('unplugin-vue-components/resolvers')
 const {VarletUIResolver} = require('unplugin-vue-components/resolvers')
 
 module.exports = defineConfig({
+    publicPath:'./',
+    outputDir:'dist',
+    assetsDir:'static',
     //关闭语法检查
     lintOnSave: false,
     transpileDependencies: true,
