@@ -1,61 +1,90 @@
 <template>
-<div class="singer-box">
-  <div calss="singer-image-box">
-    <var-image
-        class="singer-image"
-        lazy
-        loading="https://xxx.xxx/loading.png"
-        error="https://xxx.xxx/error.png"
-        :src="singerImageUrl"
-    />
+  <div class="singer-box">
+    <div calss="singer-image-box">
+      <var-image
+          class="singer-image"
+          lazy
+          loading="https://xxx.xxx/loading.png"
+          error="https://xxx.xxx/error.png"
+          :src="singerImageUrl+'?param=60y60'"
+      />
+    </div>
+    <div class="singer-name">{{ singerName }}</div>
+    <div class="singer-nick">{{ singerNickName }}</div>
   </div>
-  <div class="singer-name">{{singer}}</div>
-</div>
 </template>
 
 <script>
 export default {
   name: "singerBox",
-  props:{
-    singerImageUrl:{
-      type:String,
-      default:"",
-      require:true,
+  props: {
+    singerImageUrl: {
+      type: String,
+      default: "",
+      require: true,
     },
-    singer:{
-      type:String,
-      default:"",
-      require:true,
+    singerName: {
+      type: String,
+      default: "",
+      require: true,
+    },
+    singerNickName: {
+      type: String,
+      default: "",
+      require: true,
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.singer-box{
+.singer-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px 6px;
-  .singer-image{
+  margin: 10px;
+
+  .singer-image {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 64px;
-    height: 64px;
+    width: 60px;
+    height: 60px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 50%;
     overflow: hidden;
     margin-bottom: 6px;
-    .singer-image{
+
+    .singer-image {
       width: 60px;
       height: 60px;
       border-radius: 50%;
     }
   }
-  .singer-name{
+
+  .singer-name {
+    width: 54px;
+    text-align: center;
+    margin-bottom: 4px;
     font-size: 14px;
     color: #8d8d8d;
+    //超出一行省略
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
   }
+
+
+  .singer-nick{
+    width: 54px;
+    text-align: center;
+    font-size: 12px;
+    color: #a8a8a8;
+    //超出一行省略
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+  }
+
 }
 </style>

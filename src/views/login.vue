@@ -1,20 +1,19 @@
 <template>
-  <pc-home v-if="isPc"></pc-home>
-  <iphone-home v-else></iphone-home>
+  <pc-login v-if="isPc"></pc-login>
+  <iphone-login v-else></iphone-login>
 </template>
 
 <script>
 //导入组件
-import iphoneHome from "@/components/iphone/iphone-home";
-import pcHome from "@/components/pc/pc-home"
-
+import iphoneLogin from "@/components/iphone/iphone-login";
+import pcLogin from "@/components/pc/pc-login"
 import {computed} from "vue";
 import {useStore} from "vuex";
 
 export default {
   components: {
-    iphoneHome,
-    pcHome
+    iphoneLogin,
+    pcLogin
   },
   setup() {
     //计算属性(简写，没有考虑计算属性被修改的情况)

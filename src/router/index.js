@@ -1,7 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 //首页
-const HOME = ()=> import('../views/home.vue');
+const HOME = ()=> import('../views/home');
+const LOGIN = ()=>import('../views/login')
 const RECOM = ()=>import('../components/iphone/iphone-view/iphone-recom')
 const RANK = ()=>import('../components/iphone/iphone-view/iphone-rank')
 const SHEET = ()=>import('../components/iphone/iphone-view/iphone-sheet')
@@ -50,6 +51,14 @@ const routes = [
         meta: { title: '搜索'}
       },
     ]
+
+  },
+  {
+    path: '/login',
+    name: 'login',
+    //懒加载的方式
+    component: LOGIN,
+    meta: { title: '登录'}
 
   },
 

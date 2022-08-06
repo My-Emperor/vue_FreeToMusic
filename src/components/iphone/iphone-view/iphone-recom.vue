@@ -1,72 +1,38 @@
 <template>
   <div class="recom-box">
-    <var-swipe class="swipe-example">
-      <var-swipe-item>
-        <img class="swipe-example-image">
-        <!--  src="https://varlet-varletjs.vercel.app/cat.jpg"-->
-      </var-swipe-item>
-      <var-swipe-item>
-        <img class="swipe-example-image">
-        <!--  src="https://varlet-varletjs.vercel.app/cat2.jpg"-->
-      </var-swipe-item>
-      <var-swipe-item>
-        <img class="swipe-example-image">
-        <!--  src="https://varlet-varletjs.vercel.app/cat3.jpg"-->
+    <var-swipe v-if="data.bannerList.length > 0" class="swipe-example">
+      <var-swipe-item v-for="(item,index) in data.bannerList" :key="index">
+        <img class="swipe-example-image" :src="item.imageUrl">
       </var-swipe-item>
     </var-swipe>
     <module-box title="推荐歌单">
       <div class="recom-sheet">
         <div class="recom-sheet-scroll">
-          <song-sheet-box class="sheet-box" imgUrl="https://varlet-varletjs.vercel.app/cat.jpg"
-                          text="测试图片"></song-sheet-box>
-          <song-sheet-box class="sheet-box" imgUrl="https://varlet-varletjs.vercel.app/cat.jpg"
-                          text="测试图片"></song-sheet-box>
-          <song-sheet-box class="sheet-box" imgUrl="https://varlet-varletjs.vercel.app/cat.jpg"
-                          text="测试图片"></song-sheet-box>
-          <song-sheet-box class="sheet-box" imgUrl="https://varlet-varletjs.vercel.app/cat.jpg"
-                          text="测试图片"></song-sheet-box>
-          <song-sheet-box class="sheet-box" imgUrl="https://varlet-varletjs.vercel.app/cat.jpg"
-                          text="测试图片"></song-sheet-box>
-          <song-sheet-box class="sheet-box" imgUrl="https://varlet-varletjs.vercel.app/cat.jpg"
-                          text="测试图片"></song-sheet-box>
-          <song-sheet-box class="sheet-box" imgUrl="https://varlet-varletjs.vercel.app/cat.jpg"
-                          text="测试图片"></song-sheet-box>
-          <song-sheet-box class="sheet-box" imgUrl="https://varlet-varletjs.vercel.app/cat.jpg"
-                          text="测试图片"></song-sheet-box>
-          <song-sheet-box class="sheet-box" imgUrl="https://varlet-varletjs.vercel.app/cat.jpg"
-                          text="测试图片"></song-sheet-box>
-          <song-sheet-box class="sheet-box" imgUrl="https://varlet-varletjs.vercel.app/cat.jpg"
-                          text="测试图片"></song-sheet-box>
-          <song-sheet-box class="sheet-box" imgUrl="https://varlet-varletjs.vercel.app/cat.jpg"
-                          text="测试图片"></song-sheet-box>
+          <song-sheet-box v-for="(item,index) in data.songSheetList" :key="index"
+                          class="sheet-box"
+                          :imgUrl="item.picUrl"
+                          :text="item.name">
 
+          </song-sheet-box>
         </div>
       </div>
     </module-box>
-
     <module-box title="推荐歌曲">
       <div class="recom-music">
-        <music-box musicImageUrl="" title="题目" singer="测试"></music-box>
-        <music-box musicImageUrl="" title="题目" singer="测试"></music-box>
-        <music-box musicImageUrl="" title="题目" singer="测试"></music-box>
-        <music-box musicImageUrl="" title="题目" singer="测试"></music-box>
+        <music-box v-for="(item,index) in data.musicList" :key="index"
+                   :musicImageUrl="item.picUrl"
+                   :title="item.name"
+                   :singer="item.song.artists[0].name"></music-box>
       </div>
     </module-box>
-
     <module-box title="推荐歌手">
       <div class="recom-singer">
-        <singer-box singerImageUrl="" singer="题目" ></singer-box>
-        <singer-box singerImageUrl="" singer="题目" ></singer-box>
-        <singer-box singerImageUrl="" singer="题目" ></singer-box>
-        <singer-box singerImageUrl="" singer="题目" ></singer-box>
-        <singer-box singerImageUrl="" singer="题目" ></singer-box>
-        <singer-box singerImageUrl="" singer="题目" ></singer-box>
-        <singer-box singerImageUrl="" singer="题目" ></singer-box>
-        <singer-box singerImageUrl="" singer="题目" ></singer-box>
-        <singer-box singerImageUrl="" singer="题目" ></singer-box>
-        <singer-box singerImageUrl="" singer="题目" ></singer-box>
-        <singer-box singerImageUrl="" singer="题目" ></singer-box>
-        <singer-box singerImageUrl="" singer="题目" ></singer-box>
+        <singer-box
+            v-for="(item,index) in data.singerList" :key="index"
+            :singerImageUrl="item.picUrl"
+            :singerName="item.name"
+            :singerNickName="item.alias[0]"
+        ></singer-box>
       </div>
     </module-box>
   </div>
@@ -78,6 +44,8 @@ import moduleBox from '@/components/iphone/iphone-component/module-box'
 import songSheetBox from '@/components/iphone/iphone-component/song-sheet-box'
 import musicBox from '@/components/iphone/iphone-component/music-box'
 import singerBox from '@/components/iphone/iphone-component/singer-box'
+import {getBanner, getRecomNewMusicList, getRecomSinger, getRecomSongList} from "@/api-modules/recom";
+import {reactive} from "vue";
 
 export default {
   name: "iphone-recom",
@@ -87,17 +55,58 @@ export default {
     musicBox,
     singerBox
   },
-  setup() {
-    // 注册模块组件
 
+  setup() {
+    let data = reactive({
+      bannerList: [],
+      songSheetList: [],
+      musicList: [],
+      singerList: []
+    });
+
+    //getData
+    //首页banner
+    // store.commit('updateLoadingFlag',true);
+      getBanner().then(res => {
+        data.bannerList = res.banners;
+      });
+      //推荐歌单
+      getRecomSongList().then(res => {
+        data.songSheetList = res.result;
+      })
+      //推荐歌曲
+      getRecomNewMusicList().then(res => {
+        data.musicList = res.result;
+      })
+      //推荐歌手
+      getRecomSinger(1, 12).then(res => {
+        data.singerList = res.artists;
+      })
+
+    return {
+      data,
+    }
   },
+
 }
 </script>
 
 <style lang="scss" scoped>
 .recom-box {
+  flex: 1;
   width: 100%;
   background-color: #f3f3f3;
+
+  .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 375px;
+    height: 100vh;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
   .swipe-example {
     height: 160px;
 
@@ -140,7 +149,7 @@ export default {
     }
   }
 
-  .recom-singer{
+  .recom-singer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;

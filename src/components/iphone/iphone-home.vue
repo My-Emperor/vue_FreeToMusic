@@ -2,7 +2,7 @@
   <div class="iphone-home-page">
     <!--设计头部布局-->
     <!--  header-->
-    <var-app-bar :title="navObj.navTitle" title-position="center"
+    <var-app-bar style="flex-shrink: 0" :title="navObj.navTitle" title-position="center"
                  color="#00c48f">
       <template #left v-if="!tabObj.isTabbar">
         <var-button
@@ -29,10 +29,14 @@
       </template>
     </var-app-bar>
 
+    <var-loading class="loading-mask" description="loading..." type="circle" color="#00C48F" :loading="loadingFlag">
     <div class="iphone-container flex1">
       <router-view></router-view>
       <iphone-footer></iphone-footer>
+      <iphone-play :hasTab="tabObj.isTabbar"></iphone-play>
     </div>
+    </var-loading>
+
     <!--设计底部tabbar-->
     <var-bottom-navigation
         v-if="tabObj.isTabbar"
@@ -53,18 +57,22 @@
 </template>
 
 <script>
-import iphoneFooter from "@/components/iphone/iphone-view/iphone-footer"
-import {onMounted, reactive , watch} from "vue"
+import iphoneFooter from "@/components/iphone/iphone-component/iphone-footer"
+import {onMounted, reactive , watch,computed} from "vue"
 import {useRouter, useRoute} from "vue-router"
+import {useStore} from "vuex";
+
 
 export default {
   name: "iphone-home",
   components:{
     iphoneFooter,
   },
+
   setup() {
     const router = useRouter();
     const route = useRoute();
+    const store = useStore();
     //tabbar
     let tabObj = reactive({
       tabActive: 0,
@@ -97,7 +105,7 @@ export default {
       ],
       changeTab(active) {
         console.log(active)
-        router.push(tabObj.tabList[active].path)
+        router.replace(tabObj.tabList[active].path)
       }
     })
     //navigator
@@ -111,17 +119,21 @@ export default {
         console.log(route.fullPath)
       }
     })
-    onMounted(() => {
+
+    let loadingFlag = computed(() => {
+      return store.state.loadingFlag;
+    })
+
+    onMounted(async() => {
       // 初始化时判断tabActiveIndex
       tabObj.tabActive = tabObj.tabList.findIndex((item) => {
         return item.path == route.fullPath;
       });
       console.log(tabObj.tabActive)
     })
+
+    //监听route
     watch(route, (nv) => {
-      // console.log('route的值发生变化了');
-      // console.log(nv)
-      // console.log(`newValue:${nv}, oldValue:${ov}`);
       let index = tabObj.tabList.findIndex(item => {
         return item.path == nv.fullPath
       })
@@ -130,9 +142,12 @@ export default {
       //监视的配置
       immediate: true //首次更新
     });
+
+
     return {
       tabObj,
-      navObj
+      navObj,
+      loadingFlag
     }
   }
 }
@@ -147,9 +162,16 @@ export default {
   padding-bottom: constant(safe-area-inset-bottom); /* 兼容 iOS<11.2 */
   padding-bottom: env(safe-area-inset-bottom); /* 兼容iOS>= 11.2 */
   background-color: #fff;
-  .iphone-container {
-    width: 375px;
+  .loading-mask{
     overflow: scroll;
+  }
+  .iphone-container {
+    position: relative;
+    width: 375px;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+
   }
 }
 </style>

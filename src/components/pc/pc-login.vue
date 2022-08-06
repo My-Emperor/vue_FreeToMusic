@@ -1,10 +1,10 @@
 <template>
-<div class="flex1">search</div>
+
 </template>
 
 <script>
 export default {
-  name: "iphone-search"
+  name: "pc-login"
 }
 </script>
 

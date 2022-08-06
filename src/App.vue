@@ -11,6 +11,8 @@ export default {
   name:"APP",
   setup(){
     //在setup中就相当于beforeCreate()和created();
+
+
     onMounted(() => {
       const store = useStore();
       // //判断页面变化并响应式监听
@@ -21,7 +23,6 @@ export default {
           store.commit("updateIsPc", window.innerWidth > 913)
         }
       })
-
     });
   }
 }

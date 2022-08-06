@@ -6,6 +6,8 @@ export default createStore({
     innerWidth:1336,
     //是否pc端
     isPc:true,
+    //是否显示全局Loading
+    loadingFlag:false,
   },
   getters: {
   },
@@ -19,6 +21,9 @@ export default createStore({
     //是否pc
     updateIsPc(state,isPc){
       state.isPc = isPc;
+    },
+    updateLoadingFlag(state,loadingFlag){
+      state.loadingFlag = loadingFlag
     }
   },
   actions: {

@@ -7,7 +7,8 @@
           lazy
           loading="https://xxx.xxx/loading.png"
           error="https://xxx.xxx/error.png"
-          :src="imgUrl"
+          radius="4px"
+          :src="imgUrl+'?param=59y59'"
       />
     </div>
     <div class="song-sheet-text">{{text}}</div>
@@ -49,9 +50,11 @@ export default {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background-color: pink;
+      background-color: rgba(0,0,0,0.1);
       width: 59px;
       height: 59px;
+      border-radius: 4px;
+
     }
   }
   .song-sheet-text{

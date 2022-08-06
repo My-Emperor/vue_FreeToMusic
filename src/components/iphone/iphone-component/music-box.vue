@@ -5,7 +5,8 @@
         lazy
         loading="https://xxx.xxx/loading.png"
         error="https://xxx.xxx/error.png"
-        :src="musicImageUrl"
+        :src="musicImageUrl+'?param=50y50'"
+        radius="4px"
     />
     <div class="flex-col ai-start jc-center">
       <div class="music-title">{{ title }}</div>
@@ -41,23 +42,28 @@ export default {
 .music-box {
   display: flex;
   align-items: center;
-  padding: 12px;
+  padding: 10px;
   margin: 6px 16px;
   border-radius: 8px;
   background-color: #fff;
 
   .music-image {
     margin-right: 16px;
-    width: 60px;
-    height: 60px;
-    background-color: pink;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0,0,0,0.1);
     border-radius: 6px;
   }
 
   .music-title {
+    width: 220px;
     margin-bottom: 12px;
-    font-size: 18px;
+    font-size: 16px;
     color: #333;
+    //超出一行省略
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
   }
 
   .music-singer {

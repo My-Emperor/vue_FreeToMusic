@@ -1,10 +1,27 @@
 <template>
-  <div>/mv</div>
+  <div>
+    <button @click="loginObj.toPage">登录</button>
+
+  </div>
+
 </template>
 
 <script>
+import {useRouter} from "vue-router"
+import {reactive} from "vue";
 export default {
-  name: "iphone-mv"
+  name: "iphone-mv",
+  setup(){
+    const router = useRouter();
+    let loginObj = reactive({
+      toPage(){
+        router.push('/login');
+      }
+    })
+    return {
+      loginObj
+    }
+  }
 }
 </script>
 

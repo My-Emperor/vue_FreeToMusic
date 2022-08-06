@@ -2,7 +2,6 @@
     <el-container>
       <el-header>Header</el-header>
       <el-main>
-
         <el-button></el-button>
       </el-main>
       <el-footer>Footer</el-footer>
