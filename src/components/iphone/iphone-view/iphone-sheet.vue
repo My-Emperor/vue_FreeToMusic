@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex1">
     /sheet
   </div>
 </template>

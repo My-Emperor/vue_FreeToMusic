@@ -12,7 +12,6 @@
                           class="sheet-box"
                           :imgUrl="item.picUrl"
                           :text="item.name">
-
           </song-sheet-box>
         </div>
       </div>
@@ -44,8 +43,10 @@ import moduleBox from '@/components/iphone/iphone-component/module-box'
 import songSheetBox from '@/components/iphone/iphone-component/song-sheet-box'
 import musicBox from '@/components/iphone/iphone-component/music-box'
 import singerBox from '@/components/iphone/iphone-component/singer-box'
-import {getBanner, getRecomNewMusicList, getRecomSinger, getRecomSongList} from "@/api-modules/recom";
 import {reactive} from "vue";
+// apiModule
+import {RecomApi} from "@/api-modules/recom";
+const recomApi = new RecomApi();
 
 export default {
   name: "iphone-recom",
@@ -67,21 +68,21 @@ export default {
     //getData
     //首页banner
     // store.commit('updateLoadingFlag',true);
-      getBanner().then(res => {
-        data.bannerList = res.banners;
-      });
-      //推荐歌单
-      getRecomSongList().then(res => {
-        data.songSheetList = res.result;
-      })
-      //推荐歌曲
-      getRecomNewMusicList().then(res => {
-        data.musicList = res.result;
-      })
-      //推荐歌手
-      getRecomSinger(1, 12).then(res => {
-        data.singerList = res.artists;
-      })
+    recomApi.getBanner().then(res => {
+      data.bannerList = res.banners;
+    });
+    //推荐歌单
+    recomApi.getRecomSongList().then(res => {
+      data.songSheetList = res.result;
+    })
+    //推荐歌曲
+    recomApi.getRecomNewMusicList().then(res => {
+      data.musicList = res.result;
+    })
+    //推荐歌手
+    recomApi.getRecomSinger(1, 12).then(res => {
+      data.singerList = res.artists;
+    })
 
     return {
       data,
@@ -121,7 +122,7 @@ export default {
 
   .recom-sheet {
     display: flex;
-    padding: 0 20px;
+    padding: 0 20px 0 6px;
     width: 375px;
     overflow-x: scroll;
 
@@ -134,7 +135,7 @@ export default {
 
       .sheet-box {
         flex-shrink: 0;
-        margin: 4px;
+        margin: 4px 8px;
       }
     }
   }

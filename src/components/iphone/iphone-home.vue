@@ -163,6 +163,7 @@ export default {
   padding-bottom: env(safe-area-inset-bottom); /* 兼容iOS>= 11.2 */
   background-color: #fff;
   .loading-mask{
+    height: 100%;
     overflow: scroll;
   }
   .iphone-container {
