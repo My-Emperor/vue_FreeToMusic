@@ -46,10 +46,18 @@ export default {
       hotList: [],
       allList: [],
     });
-    rankApi.getTopList().then(res => {
-      rankObj.hotList = res.list.splice(0, 4);
-      rankObj.allList = res.list.splice(4, res.list.length)
-    })
+
+    //--------request API-------
+    //获取排行
+    function getTopList(){
+      rankApi.getTopList().then(res => {
+        rankObj.hotList = res.list.splice(0, 4);
+        rankObj.allList = res.list.splice(4, res.list.length)
+      })
+    }
+
+    getTopList();
+
     return {
       rankObj
     }

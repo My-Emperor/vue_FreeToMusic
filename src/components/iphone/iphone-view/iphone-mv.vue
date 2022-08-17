@@ -1,7 +1,6 @@
 <template>
   <div class="flex1">
     <button @click="loginObj.toPage">登录</button>
-
   </div>
 
 </template>

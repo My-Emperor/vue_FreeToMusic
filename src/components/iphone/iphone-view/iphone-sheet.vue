@@ -15,7 +15,7 @@
               v-for="(item2,index2) in sheetObj.getCategoriesList(index1)"
               :key="index2"
               class="var-tab-item">
-            {{ item2.name }}
+              {{ item2.name }}
           </var-tab>
         </div>
 
@@ -43,19 +43,25 @@ export default {
     songSheetBox
   },
   setup() {
+    //加载flag
     let loading =  ref(false);
+    //tab列表当前下标
     let currentActive = ref(0);
+    //歌单对象
     let sheetObj = reactive({
+      // hotList:[],
+      //歌单列表
       sheetList: [],
+      //分类列表
       catList: [],
+      //是否更多flag
       more: true,
       params: {
         order: "hot",//接口默认
         cat: "华语",//指定默认:华语 接口默认:全部
-        limit: "20",
-        offset: "0"
+        limit: "20",//限制条数
+        offset: "0"//偏移量
       },
-      // hotList: [],
 
       //过滤category
       getCategoriesList(catIndex) {
@@ -64,14 +70,15 @@ export default {
             return item.name;
           }
         })
-
         return list;
       },
 
       //修改类型请求数据
       changeCategoriesList(name){
         sheetObj.params.cat = name;
+        //初始化偏移量
         sheetObj.params.offset = 0;
+        //重新请求数据
         getPlayList(sheetObj);
       },
 
@@ -79,7 +86,6 @@ export default {
       scrollEvent(e) {
         const { scrollHeight, scrollTop, clientHeight } = e.target;
         if (scrollHeight - scrollTop <= clientHeight + 10) {
-
           if (!loading.value && sheetObj.more) {
             loading.value = true;
             // 触底
@@ -90,14 +96,14 @@ export default {
       },
     })
 
-    //列表分类
-    function getHotList(){
-      sheetApi.getHotList().then(res => {
-        console.log(res)
-      })
-    }
+    //热门列表分类
+    // function getHotList(){
+    //   sheetApi.getHotList().then(res => {
+    //     console.log(res)
+    //   })
+    // }
 
-
+    //--------request API-------
     //获取对应列表
     function getPlayList(sheetObj){
       sheetApi.getPlayList(sheetObj.params.order, sheetObj.params.cat, sheetObj.params.limit, sheetObj.params.offset).then(res => {
@@ -106,6 +112,7 @@ export default {
         loading.value = false;
       })
     }
+
     //获取分类
     function getCatList(){
       sheetApi.getCatList().then(res => {
@@ -113,15 +120,15 @@ export default {
       })
     }
 
-    //请求数据
+    //调取API请求获取数据
     getCatList();
+
     getPlayList(sheetObj);
 
     return {
       sheetObj,
       currentActive
     }
-
   },
 }
 </script>

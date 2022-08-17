@@ -29,7 +29,6 @@ export default {
         window.location.href = gitObj.gitList[type]
       },
     })
-
     return {
       gitObj
     }

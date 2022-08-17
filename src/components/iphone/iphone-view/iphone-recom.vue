@@ -1,14 +1,14 @@
 <template>
   <div class="recom-box">
-    <var-swipe v-if="data.bannerList.length > 0" class="swipe-example">
-      <var-swipe-item v-for="(item,index) in data.bannerList" :key="index">
+    <var-swipe v-if="recomObj.bannerList.length > 0" class="swipe-example">
+      <var-swipe-item v-for="(item,index) in recomObj.bannerList" :key="index">
         <img class="swipe-example-image" :src="item.imageUrl">
       </var-swipe-item>
     </var-swipe>
     <module-box title="推荐歌单">
       <div class="recom-sheet">
         <div class="recom-sheet-scroll">
-          <song-sheet-box v-for="(item,index) in data.songSheetList" :key="index"
+          <song-sheet-box v-for="(item,index) in recomObj.songSheetList" :key="index"
                           class="sheet-box"
                           :imgUrl="item.picUrl"
                           :text="item.name">
@@ -18,7 +18,7 @@
     </module-box>
     <module-box title="推荐歌曲">
       <div class="recom-music">
-        <music-box v-for="(item,index) in data.musicList" :key="index"
+        <music-box v-for="(item,index) in recomObj.musicList" :key="index"
                    :musicImageUrl="item.picUrl"
                    :title="item.name"
                    :singer="item.song.artists[0].name"></music-box>
@@ -27,7 +27,7 @@
     <module-box title="推荐歌手">
       <div class="recom-singer">
         <singer-box
-            v-for="(item,index) in data.singerList" :key="index"
+            v-for="(item,index) in recomObj.singerList" :key="index"
             :singerImageUrl="item.picUrl"
             :singerName="item.name"
             :singerNickName="item.alias[0]"
@@ -46,6 +46,7 @@ import singerBox from '@/components/iphone/iphone-component/singer-box'
 import {reactive} from "vue";
 // apiModule
 import {RecomApi} from "@/api-modules/recom";
+
 const recomApi = new RecomApi();
 
 export default {
@@ -58,34 +59,53 @@ export default {
   },
 
   setup() {
-    let data = reactive({
+    let recomObj = reactive({
       bannerList: [],
       songSheetList: [],
       musicList: [],
       singerList: []
     });
 
+    //--------request API-------
     //getData
     //首页banner
-    // store.commit('updateLoadingFlag',true);
-    recomApi.getBanner().then(res => {
-      data.bannerList = res.banners;
-    });
+    function getBanner() {
+      recomApi.getBanner().then(res => {
+        recomObj.bannerList = res.banners;
+      });
+    }
+
     //推荐歌单
-    recomApi.getRecomSongList().then(res => {
-      data.songSheetList = res.result;
-    })
+    function getRecomSongList() {
+      recomApi.getRecomSongList().then(res => {
+        recomObj.songSheetList = res.result;
+      })
+    }
+
     //推荐歌曲
-    recomApi.getRecomNewMusicList().then(res => {
-      data.musicList = res.result;
-    })
+    function getRecomNewMusicList() {
+      recomApi.getRecomNewMusicList().then(res => {
+        recomObj.musicList = res.result;
+      })
+    }
+
     //推荐歌手
-    recomApi.getRecomSinger(1, 12).then(res => {
-      data.singerList = res.artists;
-    })
+    function getRecomSinger(offset = 1, limit = 12) {
+      recomApi.getRecomSinger(offset, limit).then(res => {
+        recomObj.singerList = res.artists;
+      })
+    }
+
+
+    //请求APi
+    getBanner();
+    getRecomSongList();
+    getRecomNewMusicList();
+    getRecomSinger();
+
 
     return {
-      data,
+      recomObj,
     }
   },
 

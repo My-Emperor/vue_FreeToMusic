@@ -2,7 +2,7 @@
   <div :class="[hasTab?'bottom-tab-height':'bottom-height','iphone-play-box']">
 
     <div class=""></div>
-    音乐控制器
+    控制器
   </div>
 </template>
 
