@@ -4,6 +4,7 @@
     <module-box title="云音乐特色榜">
       <div class="rank-hot-list">
         <song-sheet-box v-for="(item,index) in rankObj.hotList" :key="index"
+                        :boxWidth="70"
                         :imgUrl="item.coverImgUrl"
                         :text="item.name">
         </song-sheet-box>
@@ -13,6 +14,7 @@
       <div class="rank-all-list">
         <song-sheet-box v-for="(item,index) in rankObj.allList" :key="index"
                         class="rank-all-item"
+                        :boxWidth="70"
                         :imgUrl="item.coverImgUrl"
                         :text="item.name">
         </song-sheet-box>

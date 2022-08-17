@@ -24,6 +24,7 @@
     <div @scroll="sheetObj.scrollEvent" class="scroll-right">
       <song-sheet-box class="sheet-item-box"
                       v-for="(item,index) in sheetObj.sheetList" :key="index"
+                      :boxWidth="90"
                       :imgUrl="item.coverImgUrl"
                       :text="item.name">
       </song-sheet-box>
@@ -51,7 +52,7 @@ export default {
       params: {
         order: "hot",//接口默认
         cat: "华语",//指定默认:华语 接口默认:全部
-        limit: "10",
+        limit: "20",
         offset: "0"
       },
       // hotList: [],
@@ -77,10 +78,9 @@ export default {
       //上拉滚动监听
       scrollEvent(e) {
         const { scrollHeight, scrollTop, clientHeight } = e.target;
-        if (scrollHeight - scrollTop <= clientHeight) {
-          console.log("触底")
-          console.log(loading.value)
-          if (!loading.value) {
+        if (scrollHeight - scrollTop <= clientHeight + 10) {
+
+          if (!loading.value && sheetObj.more) {
             loading.value = true;
             // 触底
             sheetObj.params.offset++;
@@ -90,9 +90,15 @@ export default {
       },
     })
 
-    // sheetApi.getHotList().then(res => {
-    //   console.log(res)
-    // })
+    //列表分类
+    function getHotList(){
+      sheetApi.getHotList().then(res => {
+        console.log(res)
+      })
+    }
+
+
+    //获取对应列表
     function getPlayList(sheetObj){
       sheetApi.getPlayList(sheetObj.params.order, sheetObj.params.cat, sheetObj.params.limit, sheetObj.params.offset).then(res => {
         sheetObj.more = res.more;
@@ -100,6 +106,7 @@ export default {
         loading.value = false;
       })
     }
+    //获取分类
     function getCatList(){
       sheetApi.getCatList().then(res => {
         sheetObj.catList = res;
@@ -158,11 +165,12 @@ export default {
   .scroll-right {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     flex: 1;
     height: 100%;
     overflow: scroll;
     .sheet-item-box{
-      margin: 20px;
+      margin: 10px 20px;
       flex-shrink: 0;
     }
   }
