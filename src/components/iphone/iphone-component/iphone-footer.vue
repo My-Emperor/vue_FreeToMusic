@@ -41,7 +41,7 @@ export default {
   display: flex;
   flex-direction: column;
   border-top: 1px solid #ccc;
-  padding: 4px 15px;
+  padding: 10px 15px;
 
   .link-url {
     display: flex;

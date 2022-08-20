@@ -28,10 +28,10 @@
 <script>
 import moduleBox from "../iphone-component/module-box"
 import songSheetBox from "../iphone-component/song-sheet-box"
-// apiModule
-import {RankApi} from "@/api-modules/rank";
 import {reactive} from "vue"
 
+// apiModule
+import {RankApi} from "@/api-modules/rank";
 const rankApi = new RankApi();
 
 export default {

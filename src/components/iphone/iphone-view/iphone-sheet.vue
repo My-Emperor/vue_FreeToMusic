@@ -59,8 +59,8 @@ export default {
       params: {
         order: "hot",//接口默认
         cat: "华语",//指定默认:华语 接口默认:全部
-        limit: "20",//限制条数
-        offset: "0"//偏移量
+        limit: 20,//限制条数
+        offset: 20//偏移量
       },
 
       //过滤category
@@ -89,7 +89,7 @@ export default {
           if (!loading.value && sheetObj.more) {
             loading.value = true;
             // 触底
-            sheetObj.params.offset++;
+            sheetObj.params.offset += sheetObj.params.limit;
             getPlayList(sheetObj);
           }
         }
@@ -105,8 +105,8 @@ export default {
 
     //--------request API-------
     //获取对应列表
-    function getPlayList(sheetObj){
-      sheetApi.getPlayList(sheetObj.params.order, sheetObj.params.cat, sheetObj.params.limit, sheetObj.params.offset).then(res => {
+    function getPlayList(params){
+      sheetApi.getPlayList(params.order, params.cat, params.limit, params.offset).then(res => {
         sheetObj.more = res.more;
         sheetObj.sheetList = sheetObj.params.offset == 0 ? res.playlists : [...sheetObj.sheetList, ...res.playlists];
         loading.value = false;
@@ -123,7 +123,7 @@ export default {
     //调取API请求获取数据
     getCatList();
 
-    getPlayList(sheetObj);
+    getPlayList(sheetObj.params);
 
     return {
       sheetObj,

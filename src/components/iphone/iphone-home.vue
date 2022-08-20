@@ -12,7 +12,7 @@
             text-color="#fff"
             @click="navObj.goBack"
         >
-          <var-icon name="chevron-left" :size="28" />
+          <var-icon name="chevron-left" :size="28"/>
         </var-button>
       </template>
       <template #right>
@@ -30,11 +30,14 @@
     </var-app-bar>
 
     <var-loading class="loading-mask" description="loading..." type="circle" color="#00C48F" :loading="loadingFlag">
-    <div class="iphone-container flex1">
-      <router-view></router-view>
-      <iphone-footer></iphone-footer>
-      <iphone-play :hasTab="tabObj.isTabbar"></iphone-play>
-    </div>
+      <div class="iphone-container flex1">
+        <!--主体内容-->
+        <router-view></router-view>
+        <!--底部-->
+        <iphone-footer></iphone-footer>
+        <!--控制器-->
+        <iphone-play :hasTab="tabObj.isTabbar"></iphone-play>
+      </div>
     </var-loading>
 
     <!--设计底部tabbar-->
@@ -58,14 +61,14 @@
 
 <script>
 import iphoneFooter from "@/components/iphone/iphone-component/iphone-footer"
-import {onMounted, reactive , watch,computed} from "vue"
+import {onMounted, reactive, watch, computed} from "vue"
 import {useRouter, useRoute} from "vue-router"
 import {useStore} from "vuex";
 
 
 export default {
   name: "iphone-home",
-  components:{
+  components: {
     iphoneFooter,
   },
 
@@ -76,29 +79,29 @@ export default {
     //tabbar
     let tabObj = reactive({
       tabActive: 0,
-      isTabbar:true,
+      isTabbar: true,
       tabList: [
         {
           label: "推荐",
-          index:"0",
+          index: "0",
           path: "/recom",
           varletIcon: "home"
         },
         {
           label: "排行",
-          index:"1",
+          index: "1",
           path: "/rank",
           varletIcon: "magnify"
         },
         {
           label: "歌单",
-          index:"2",
+          index: "2",
           path: "/sheet",
           varletIcon: "format-list-checkbox"
         },
         {
           label: "MV",
-          index:"3",
+          index: "3",
           path: "/mv",
           varletIcon: "account-circle"
         },
@@ -110,8 +113,8 @@ export default {
     })
     //navigator
     let navObj = reactive({
-      navTitle:route.meta.title,
-      goBack(){
+      navTitle: route.meta.title,
+      goBack() {
         router.back();
       },
       searchButton() {
@@ -124,7 +127,7 @@ export default {
       return store.state.loadingFlag;
     })
 
-    onMounted(async() => {
+    onMounted(async () => {
       // 初始化时判断tabActiveIndex
       tabObj.tabActive = tabObj.tabList.findIndex((item) => {
         return item.path == route.fullPath;
@@ -137,7 +140,7 @@ export default {
       let index = tabObj.tabList.findIndex(item => {
         return item.path == nv.fullPath
       })
-      tabObj.isTabbar = index == -1?false:true;
+      tabObj.isTabbar = index == -1 ? false : true;
     }, {
       //监视的配置
       immediate: true //首次更新
@@ -162,24 +165,26 @@ export default {
   padding-bottom: constant(safe-area-inset-bottom); /* 兼容 iOS<11.2 */
   padding-bottom: env(safe-area-inset-bottom); /* 兼容iOS>= 11.2 */
   background-color: #fff;
-  :deep .var-loading__content{
+
+  :deep .var-loading__content {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
-  .loading-mask{
+
+  .loading-mask {
     display: flex;
     flex-direction: column;
     height: 100%;
     overflow: scroll;
   }
+
   .iphone-container {
     position: relative;
     width: 375px;
     display: flex;
     flex-direction: column;
     overflow: scroll;
-
   }
 }
 </style>
