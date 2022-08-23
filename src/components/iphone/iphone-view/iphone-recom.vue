@@ -19,6 +19,7 @@
     <module-box title="推荐歌曲">
       <div class="recom-music">
         <music-box v-for="(item,index) in recomObj.musicList" :key="index"
+                   @click="recomObj.getMusicRef(item)"
                    :musicImageUrl="item.picUrl"
                    :title="item.name"
                    :singer="item.song.artists[0].name"></music-box>
@@ -44,10 +45,11 @@ import songSheetBox from '@/components/iphone/iphone-component/song-sheet-box'
 import musicBox from '@/components/iphone/iphone-component/music-box'
 import singerBox from '@/components/iphone/iphone-component/singer-box'
 import {reactive} from "vue";
+import {useStore} from "vuex"
 // apiModule
 import {RecomApi} from "@/api-modules/recom";
-
 const recomApi = new RecomApi();
+
 
 export default {
   name: "iphone-recom",
@@ -58,12 +60,20 @@ export default {
     singerBox
   },
 
-  setup() {
+  setup(prop,context) {
+    const store = useStore();
     let recomObj = reactive({
       bannerList: [],
       songSheetList: [],
       musicList: [],
-      singerList: []
+      singerList: [],
+
+      getMusicRef(item){
+        console.log(item)
+        //store
+        store.dispatch("music/updateMusicInfo",{info:item})
+        // context.emit('getMusic',id);
+      }
     });
 
     //--------request API-------

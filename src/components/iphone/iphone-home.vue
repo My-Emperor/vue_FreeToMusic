@@ -36,7 +36,10 @@
         <!--底部-->
         <iphone-footer></iphone-footer>
         <!--控制器-->
-        <iphone-play :hasTab="tabObj.isTabbar"></iphone-play>
+        <iphone-play @showScreen="screenControlObj.changeScreenShow()" :hasTab="tabObj.isTabbar"></iphone-play>
+
+        <!--全屏-->
+        <iphone-screen-control @hideScreen="screenControlObj.changeScreenShow()" class="screen-control-container" ref="screenControl"></iphone-screen-control>
       </div>
     </var-loading>
 
@@ -60,15 +63,17 @@
 </template>
 
 <script>
-import iphoneFooter from "@/components/iphone/iphone-component/iphone-footer"
-import {onMounted, reactive, watch, computed} from "vue"
+import {onMounted, reactive, watch, computed, ref} from "vue"
 import {useRouter, useRoute} from "vue-router"
 import {useStore} from "vuex";
+import IphoneScreenControl from "@/components/iphone/iphone-component/iphone-screen-control";
+import iphoneFooter from "@/components/iphone/iphone-component/iphone-footer"
 
 
 export default {
   name: "iphone-home",
   components: {
+    IphoneScreenControl,
     iphoneFooter,
   },
 
@@ -123,11 +128,46 @@ export default {
       }
     })
 
+    let showLoadFlag = ref(false);
+
+    let screenControlObj = reactive({
+      showScreenFlag: false,
+      changeScreenShow() {
+        if (showLoadFlag.value){
+          return;
+        }
+        showLoadFlag.value = true;
+
+        screenControlObj.showScreenFlag = !screenControlObj.showScreenFlag;
+
+        //引用为组件
+        console.log(screenControl.value.$el.classList)
+        //显示隐藏
+        if (screenControlObj.showScreenFlag) {
+          console.log("显示 ")
+          screenControl.value.$el.style.display = 'block';
+          screenControl.value.$el.style.animationName = 'show-screen-control';
+        } else {
+          console.log('隐藏')
+          screenControl.value.$el.style.animationName = 'hide-screen-control';
+          setTimeout(() => {
+            screenControl.value.$el.style.display = 'none';
+          }, 800)
+        }
+
+        setTimeout(()=>{
+          showLoadFlag.value = false;
+        },1000)
+      },
+    })
+
     let loadingFlag = computed(() => {
       return store.state.loadingFlag;
     })
 
+    let screenControl = ref();
     onMounted(async () => {
+      console.log("screenControl---",screenControl.value.$el)
       // 初始化时判断tabActiveIndex
       tabObj.tabActive = tabObj.tabList.findIndex((item) => {
         return item.path == route.fullPath;
@@ -150,11 +190,50 @@ export default {
     return {
       tabObj,
       navObj,
+      screenControlObj,
+      screenControl,
       loadingFlag
     }
   }
 }
 </script>
+
+<style>
+
+@keyframes show-screen-control {
+  0%{
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  
+  50%{
+    opacity: 1;
+  }
+  
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hide-screen-control {
+  0%{
+    opacity: 1;
+    transform: translateY(0);
+
+  }
+  
+  50%{
+    opacity: 0;
+  }
+  
+  100%{
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+</style>
 
 <style lang="scss" scoped>
 .iphone-home-page {
@@ -185,6 +264,12 @@ export default {
     display: flex;
     flex-direction: column;
     overflow: scroll;
+
+    .screen-control-container {
+      display: none;
+      animation: null .4s ease;
+      animation-fill-mode: forwards;
+    }
   }
 }
 </style>

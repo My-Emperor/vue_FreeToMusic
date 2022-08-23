@@ -13,6 +13,16 @@ module.exports = defineConfig({
     //关闭语法检查
     lintOnSave: false,
     transpileDependencies: true,
+    //配置动态代理
+    devServer: {
+        proxy: {
+            '/': {
+                ws:false,
+                target: 'http://120.77.95.130:3000', // 目标服务器
+                changeOrigin: true //允许跨域
+            }
+        }
+    },
     //配置webpack
     configureWebpack: {
         plugins: [

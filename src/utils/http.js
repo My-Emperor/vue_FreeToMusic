@@ -1,12 +1,12 @@
 import axios from 'axios'
 import global from '../../global'
 //varlet消息提示组件
-import { Snackbar } from '@varlet/ui'
+// import { Snackbar } from '@varlet/ui'
 import store from '../store'
 console.log(store)
 let requestIndex = 0;
 export function http(config) {
-    // 1.创建axios的实例
+    // 创建axios的实例
     const instance = axios.create({
         baseURL: global.BASE_URL,
         timeout: 5000
