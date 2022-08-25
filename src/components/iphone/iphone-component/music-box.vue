@@ -5,7 +5,7 @@
         lazy
         loading="https://xxx.xxx/loading.png"
         error="https://xxx.xxx/error.png"
-        :src="musicImageUrl+'?param=50y50'"
+        :src="musicImageUrl"
         radius="4px"
     />
     <div class="flex-col ai-start jc-center">
