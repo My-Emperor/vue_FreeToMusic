@@ -7,7 +7,7 @@
         loading="https://xxx.xxx/loading.png"
         error="https://xxx.xxx/error.png"
         radius="4px"
-        :src="imgUrl"
+        :src="imgUrl+`?param=${5*boxWidth}y${5*boxWidth}`"
     />
     <div class="song-sheet-text">{{ text }}</div>
   </div>

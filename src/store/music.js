@@ -14,7 +14,8 @@ export default {
             author:null, //song.artists
             name:null,
             image: ''
-        }
+        },
+        musicList:[],
     },
     getters: {
         //获取

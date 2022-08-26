@@ -5,6 +5,8 @@
       <!--地区-->
         <var-tabs
             :elevation="false"
+            indicator-color="#00C48F"
+            active-color="#00C48F"
             v-model:active="mvObj.areaIndex"
         >
           <var-tab v-for="(item,index) in mvObj.areaList" :key="index" @click="mvObj.changeVarTabs(item,'area')">{{item}}</var-tab>
@@ -12,6 +14,8 @@
       <!--类型-->
         <var-tabs
             :elevation="false"
+            indicator-color="#00C48F"
+            active-color="#00C48F"
             v-model:active="mvObj.typeIndex"
         >
           <var-tab v-for="(item,index) in mvObj.typeList" :key="index" @click="mvObj.changeVarTabs(item,'type')">{{item}}</var-tab>
@@ -19,6 +23,8 @@
       <!--排序-->
         <var-tabs
             :elevation="false"
+            indicator-color="#00C48F"
+            active-color="#00C48F"
             v-model:active="mvObj.orderIndex"
         >
           <var-tab v-for="(item,index) in mvObj.orderList" :key="index" @click="mvObj.changeVarTabs(item,'order')">{{item}}</var-tab>
@@ -43,9 +49,7 @@
             <div class="mv-author">{{item.artistName}}</div>
           </div>
         </div>
-        <div class="mv-item"></div>
-        <div class="mv-item"></div>
-        <div class="mv-item"></div>
+
     </div>
   </div>
 
@@ -220,7 +224,7 @@ export default {
         .mv-title{
           margin: 6px 0 4px;
           font-size: 14px;
-          color: #fff;
+          color: #333;
         }
         .mv-author{
           font-size: 12px;

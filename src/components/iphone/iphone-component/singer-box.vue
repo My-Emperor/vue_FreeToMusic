@@ -6,7 +6,7 @@
           lazy
           loading="https://xxx.xxx/loading.png"
           error="https://xxx.xxx/error.png"
-          :src="singerImageUrl"
+          :src="singerImageUrl+'?param=300y300'"
       />
     </div>
     <div class="singer-name">{{ singerName }}</div>
