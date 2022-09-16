@@ -11,7 +11,8 @@
           <song-sheet-box v-for="(item,index) in recomObj.songSheetList" :key="index"
                           class="sheet-box"
                           :imgUrl="item.picUrl"
-                          :text="item.name">
+                          :text="item.name"
+                          :sheet-id="item.id">
           </song-sheet-box>
         </div>
       </div>

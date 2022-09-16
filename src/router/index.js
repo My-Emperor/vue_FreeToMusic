@@ -8,6 +8,7 @@ const RANK = ()=>import('../components/iphone/iphone-view/iphone-rank')
 const SHEET = ()=>import('../components/iphone/iphone-view/iphone-sheet')
 const MV = ()=>import('../components/iphone/iphone-view/iphone-mv')
 const SEARCH = ()=>import('../components/iphone/iphone-view/iphone-search')
+const SONG_SHEET = ()=>import('../components/iphone/iphone-view/iphone-song-sheet')
 const routes = [
   {
     path: "",
@@ -49,6 +50,12 @@ const routes = [
         path: "/search",
         component: SEARCH,
         meta: { title: '搜索'}
+      },
+      {
+        //songSheet
+        path: "/songSheet",
+        component: SONG_SHEET,
+        meta: { title: '歌单详情'}
       },
     ]
 

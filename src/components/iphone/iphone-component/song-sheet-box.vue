@@ -1,6 +1,6 @@
 <template>
   <!--歌单盒子-->
-  <div class="song-sheet-box" :style="{'width':boxWidth+'px'}">
+  <div @click="goto" class="song-sheet-box" :style="{'width':boxWidth+'px'}">
     <var-image
         class="song-sheet-img"
         lazy
@@ -13,7 +13,9 @@
   </div>
 </template>
 
+
 <script>
+import {useRouter,useRoute} from "vue-router"
 
 export default {
   name: "song-sheet-box",
@@ -31,6 +33,23 @@ export default {
     boxWidth:{
       type:Number,
       default:62,
+    },
+    sheetId:{
+      type:Number,
+      required: true
+    }
+  },
+  setup(props){
+    const router = new useRouter();
+
+    function goto(){
+      console.log(props)
+      console.log(props.sheetId)
+      router.push({path:'/songSheet',query:{sheetId:props.sheetId}})
+    }
+
+    return {
+      goto
     }
   }
 }

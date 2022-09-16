@@ -6,7 +6,8 @@
         <song-sheet-box v-for="(item,index) in rankObj.hotList" :key="index"
                         :boxWidth="70"
                         :imgUrl="item.coverImgUrl"
-                        :text="item.name">
+                        :text="item.name"
+                        :sheet-id="item.id">
         </song-sheet-box>
       </div>
     </module-box>
@@ -16,7 +17,8 @@
                         class="rank-all-item"
                         :boxWidth="70"
                         :imgUrl="item.coverImgUrl"
-                        :text="item.name">
+                        :text="item.name"
+                        :sheet-id="item.id">
         </song-sheet-box>
         <div class="empty-rank-item" v-for="(item,index) in 4 - (rankObj.allList.length % 4)" :key="index" >
         </div>

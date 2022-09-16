@@ -6,7 +6,7 @@ const musicApi = new MusicApi();
 export default {
     namespaced: true, // 开启命名空间
     state: {
-        //playAudioControl所需
+        //playAudioControl
         musicInfo: {
             id: '',
             url: '',
@@ -15,19 +15,39 @@ export default {
             name:null,
             image: ''
         },
-        musicList:[],
+        //歌单
+        musicSheet:[],
+        //播放状态: 1.列表循环 , 2.单曲循环, 3.随机播放
+        musicStatus:0,
     },
     getters: {
-        //获取
         getMusicInfo(state) {
             return state.musicInfo
+        },
+
+        getMusicSheet(state){
+            return state.musicSheet
+        },
+
+        getMusicStatus(state){
+            return state.musicStatus
         }
     },
     mutations: {
-        //更改
+        //更改歌曲
         setMusicInfo(state, payload) {
+            console.log("setMusicInfo:",payload)
             state.musicInfo = payload;
-        }
+        },
+
+        //更改歌单
+        setMusicSheet(state, payload) {
+            state.musicSheet = payload;
+        },
+
+        setMusicStatus(state, payload){
+            state.musicSheet = payload;
+}
     },
     actions: {
         //异步更新
@@ -44,8 +64,16 @@ export default {
                 name:payload.info.name,
                 image: payload.info.picUrl
             }
-
             commit('setMusicInfo', musicInfo)
+
+            let arr = state.musicSheet.filter(item => {
+                return item.id == musicInfo.id
+            })
+
+            if (arr.length == 0){
+                commit('setMusicSheet',[musicInfo,...state.musicSheet]);
+            }
+
         }
     },
 

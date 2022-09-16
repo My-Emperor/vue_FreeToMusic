@@ -41,6 +41,34 @@ class SheetApi {
         })
     }
 
+    /**
+     * 获取歌单详情
+     * @param id 歌单id
+     * @returns {AxiosPromise}
+     */
+    getSongDetailsList(id){
+        return http({
+            url:"/playlist/detail",
+            params:{
+                id
+            }
+        })
+    }
+
+    /**
+     * 获取歌曲详情
+     * @param ids : 歌曲ids 支持多个id 用,隔开
+     * @returns {AxiosPromise}
+     */
+    getMusicList(ids) {
+        return http({
+            url: "/song/detail",
+            params: {
+                ids
+            }
+        })
+    }
+
 }
 
 export {

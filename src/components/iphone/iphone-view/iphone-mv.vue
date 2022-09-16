@@ -30,7 +30,7 @@
           <var-tab v-for="(item,index) in mvObj.orderList" :key="index" @click="mvObj.changeVarTabs(item,'order')">{{item}}</var-tab>
         </var-tabs>
     </div>
-    <div @scroll="mvObj.scrollEvent" class="mv-list">
+    <div ref="listScroll" @scroll="mvObj.scrollEvent" class="mv-list">
         <div v-for="(item,index) in mvObj.mvList" :key="index" class="mv-item">
           <div class="mv-mask">
             <div class="mv-play-count">点击量：{{item.playCount}}</div>
@@ -49,7 +49,6 @@
             <div class="mv-author">{{item.artistName}}</div>
           </div>
         </div>
-
     </div>
   </div>
 
@@ -68,7 +67,6 @@ export default {
     //加载flag
     let loading =  ref(false);
     let mvObj = reactive({
-
       //地区列表
       areaList: ['全部', '内地', '港台', '欧美', '日本', '韩国'],
       areaIndex: 0,
@@ -113,14 +111,12 @@ export default {
 
     })
 
-
-
-
     //request Api
     //--------request API-------
     //获取排行
     function getMvList(params){
       mvApi.getMvList(params.area, params.type, params.order, params.limit, params.offset).then(res => {
+        console.log(res)
         mvObj.more = res.hasMore;
         //过滤处理点击次数
         res.data = res.data.map(item => {
@@ -130,6 +126,7 @@ export default {
 
         mvObj.mvList = mvObj.params.offset==0?res.data:[...mvObj.mvList,...res.data]
         loading.value = false;
+        listScroll.value.scrollTop = 0;
         console.log(mvObj.mvList)
       })
     }
@@ -141,8 +138,13 @@ export default {
     //     router.push('/login');
     //   }
     // })
+
+    // ref引用对象
+    let listScroll = ref();
+
     return {
-       mvObj
+       mvObj,
+      listScroll
     }
   }
 }
@@ -181,7 +183,6 @@ export default {
       height: 240px;
       border-radius: 10px;
       background-color: #fff;
-
       .mv-mask{
         display: flex;
         align-items: center;

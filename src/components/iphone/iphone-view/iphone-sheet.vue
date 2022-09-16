@@ -26,7 +26,8 @@
                       v-for="(item,index) in sheetObj.sheetList" :key="index"
                       :boxWidth="90"
                       :imgUrl="item.coverImgUrl"
-                      :text="item.name">
+                      :text="item.name"
+                      :sheet-id="item.id">
       </song-sheet-box>
     </div>
   </div>
